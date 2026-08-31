@@ -12,8 +12,8 @@ services:
         sync: false
       - key: HF_REPO_ID
         sync: false
-      - key: CORS_ORIGINS
-        sync: false  # set to the deployed Vercel URL(s), comma-separated
+      - key: LPIE_CORS_ORIGINS
+        sync: false  # set to the deployed Vercel URL(s), comma-separated — must carry the LPIE_ prefix, see core/config.py _ENV_PREFIX
       - key: PYTHON_VERSION
         value: 3.12.3
       - key: LPIE_FAIL_STARTUP_ON_MISSING_ARTIFACTS
