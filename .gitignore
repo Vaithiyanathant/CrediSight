@@ -32,10 +32,9 @@ pip-wheel-metadata/
 .coverage
 htmlcov/
 
-# ── Datasets (regenerate with scripts/generate_datasets.py) ──────────────
-dataset/*.csv
-!dataset/macro_scenarios.csv
-!dataset/submission_template.csv
+# ── Datasets ───────────────────────────────────────────────────────────
+# The panel CSVs are committed (Render's build loads them into the feature
+# store live) — see scripts/generate_datasets.py to regenerate them.
 dataset/hmda_raw/
 dataset/*.log
 *.csv.gz

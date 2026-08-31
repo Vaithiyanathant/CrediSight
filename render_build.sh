@@ -35,7 +35,19 @@ else
   python3 scripts/download_anomaly.py
 fi
 
-echo "=== [4/4] Initialising DuckDB schema ==="
+echo "=== [4/5] Loading the panel into DuckDB and building the feature store ==="
+# The dataset CSVs are committed to the repo specifically so this can run on
+# Render's ephemeral disk at build time. Without it, DuckDB and the feature
+# store are empty and the portfolio/anomaly/DQ/drift screens 404 with
+# DATA_NOT_FOUND even though the API itself is healthy. Non-fatal on error —
+# the API still boots and serves predict/explain/copilot/submission without a
+# populated feature store; only the screens that read it stay empty.
+python3 -m lpie.pipelines.runner data \
+  && python3 -m lpie.pipelines.runner features \
+  && echo "[render_build] Feature store built OK" \
+  || echo "[render_build] WARNING: data/features stage failed — portfolio/anomaly/DQ/drift screens will 404 until this is fixed."
+
+echo "=== [5/5] Confirming DuckDB schema ==="
 python3 - << 'PYEOF'
 import sys
 sys.path.insert(0, "src")
@@ -45,7 +57,7 @@ try:
     s = get_settings()
     store = DuckDBStore(s)
     store.initialise()
-    print("[render_build] DuckDB initialised OK")
+    print("[render_build] DuckDB schema confirmed OK")
 except Exception as e:
     print(f"[render_build] DuckDB init warning: {e}")
 PYEOF
