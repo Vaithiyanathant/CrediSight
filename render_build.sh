@@ -21,7 +21,19 @@ mkdir -p logs
 mkdir -p reports
 
 echo "=== [3/4] Downloading anomaly model from Hugging Face (if needed) ==="
-python3 scripts/download_anomaly.py
+if [ "${LPIE_SKIP_ANOMALY_MODEL:-false}" = "true" ]; then
+  # anomaly.joblib deserializes to well over Render's free-tier 512 MB cap once
+  # combined with the rest of the loaded artifacts, and OOM-kills the process
+  # before it can bind a port. The registry already degrades gracefully when
+  # this artifact is absent (anomaly endpoints return 503; every other
+  # endpoint — predict, survival, scenario, explain, submission — is
+  # unaffected). Remove it only on constrained instances; it stays committed
+  # for local runs and any host with more memory.
+  echo "[render_build] LPIE_SKIP_ANOMALY_MODEL=true — removing anomaly.joblib to fit the free-tier memory limit."
+  rm -f artifacts/models/anomaly.joblib
+else
+  python3 scripts/download_anomaly.py
+fi
 
 echo "=== [4/4] Initialising DuckDB schema ==="
 python3 - << 'PYEOF'

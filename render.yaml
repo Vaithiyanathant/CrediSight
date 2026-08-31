@@ -18,6 +18,8 @@ services:
         value: 3.12.3
       - key: LPIE_FAIL_STARTUP_ON_MISSING_ARTIFACTS
         value: "false"
+      - key: LPIE_SKIP_ANOMALY_MODEL
+        value: "true"  # anomaly.joblib (198MB serialized) OOMs the free 512MB plan; unset once on a bigger plan
       - key: LPIE_LOG_JSON
         value: "true"
       - key: LPIE_DUCKDB_THREADS
