@@ -5,7 +5,13 @@
 set -e
 
 echo "=== [1/4] Installing Python dependencies ==="
-pip install -e ".[rag]" --break-system-packages -q
+# The "rag" extra (sentence-transformers + torch) makes the copilot download and
+# load a transformer embedder at runtime. On Render's free 512 MB instance that
+# import alone pegs memory at the ceiling and hangs startup. The copilot already
+# falls back to a deterministic, in-memory TF-IDF index with no network or torch
+# dependency when sentence-transformers is absent (config.copilot.rag.fallback_embedder),
+# so skip the extra here — behaviour is identical, just without the memory risk.
+pip install -e "." --break-system-packages -q
 
 echo "=== [2/4] Creating required directories ==="
 mkdir -p artifacts/models
