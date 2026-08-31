@@ -20,6 +20,8 @@ services:
         value: "false"
       - key: LPIE_SKIP_ANOMALY_MODEL
         value: "true"  # anomaly.joblib (198MB serialized) OOMs the free 512MB plan; unset once on a bigger plan
+      - key: LPIE_RENDER_SAMPLE_LOANS
+        value: "1500"  # full 10k loans OOMs on query (confirmed: 511MB then crash); raise/remove on a bigger plan
       - key: LPIE_LOG_JSON
         value: "true"
       - key: LPIE_DUCKDB_THREADS

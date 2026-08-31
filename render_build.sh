@@ -42,6 +42,43 @@ echo "=== [4/5] Loading the panel into DuckDB and building the feature store ===
 # DATA_NOT_FOUND even though the API itself is healthy. Non-fatal on error —
 # the API still boots and serves predict/explain/copilot/submission without a
 # populated feature store; only the screens that read it stay empty.
+#
+# The full panel (10,000 loans / 420,000 rows) OOM-killed this instance the
+# first time an aggregation endpoint (portfolio/summary, dq/summary) actually
+# queried it — confirmed live, memory hit 511 MB and the process died. This
+# instance genuinely does not have the headroom for the full dataset once
+# queried, not just at load time. LPIE_RENDER_SAMPLE_LOANS trims the committed
+# CSVs down to a memory-safe subset *only on this ephemeral disk* before the
+# pipeline runs — the git-committed CSVs are untouched, so a local run or a
+# bigger host still gets the full 10,000 loans. Every loan's full history is
+# kept intact; only the loan count shrinks, so every screen shows real,
+# internally-consistent data, just for fewer loans.
+SAMPLE_N="${LPIE_RENDER_SAMPLE_LOANS:-0}"
+if [ "$SAMPLE_N" -gt 0 ] 2>/dev/null; then
+  echo "[render_build] LPIE_RENDER_SAMPLE_LOANS=$SAMPLE_N — trimming the panel to fit this instance's memory."
+  python3 - "$SAMPLE_N" << 'PYEOF'
+import sys
+import pandas as pd
+
+n = int(sys.argv[1])
+ds = "dataset"
+
+static = pd.read_csv(f"{ds}/loan_static_attributes.csv", dtype=str)
+keep_ids = set(static["loan_id"].iloc[:n])
+static[static["loan_id"].isin(keep_ids)].to_csv(f"{ds}/loan_static_attributes.csv", index=False)
+
+for fname in ("loan_monthly_performance_train.csv", "loan_monthly_performance_test.csv", "servicer_updates.csv"):
+    path = f"{ds}/{fname}"
+    df = pd.read_csv(path, dtype=str)
+    before = len(df)
+    df = df[df["loan_id"].isin(keep_ids)]
+    df.to_csv(path, index=False)
+    print(f"[render_build]   {fname}: {before} -> {len(df)} rows")
+
+print(f"[render_build] Sampled to {len(keep_ids)} loans.")
+PYEOF
+fi
+
 python3 -m lpie.pipelines.runner data \
   && python3 -m lpie.pipelines.runner features \
   && echo "[render_build] Feature store built OK" \
