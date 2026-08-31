@@ -1,0 +1,337 @@
+{
+  "status": "ok",
+  "n_rows": 420000,
+  "n_features": 145,
+  "feature_hash": "43db61440e5ebf9796fc764d222d4ac819c831beb327e0f5e5c2a179591974b9",
+  "fit_params_hash": "099d93b70ade78e817b30b6336e403729b096c4b0df149276c58a6c932dcb9aa",
+  "stage_timings_ms": {
+    "validation": 1603.14,
+    "static": 512.82,
+    "balance": 6253.35,
+    "delinquency": 4567.43,
+    "prepay": 119.97,
+    "dq": 88.64,
+    "servicer": 210.51,
+    "cohort": 850.75,
+    "temporal": 22.27,
+    "interactions": 34.17
+  },
+  "families": {
+    "static": 16,
+    "balance": 20,
+    "delinquency": 32,
+    "prepay": 13,
+    "cohort": 10,
+    "dq": 22,
+    "servicer": 12,
+    "temporal": 8,
+    "interactions": 12
+  },
+  "store_manifest": {
+    "root": "artifacts/store/features",
+    "n_partitions": 42,
+    "n_rows": 420000,
+    "n_columns": 155,
+    "partitions": [
+      {
+        "month_index": 1,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=1/part.parquet"
+      },
+      {
+        "month_index": 2,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=2/part.parquet"
+      },
+      {
+        "month_index": 3,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=3/part.parquet"
+      },
+      {
+        "month_index": 4,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=4/part.parquet"
+      },
+      {
+        "month_index": 5,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=5/part.parquet"
+      },
+      {
+        "month_index": 6,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=6/part.parquet"
+      },
+      {
+        "month_index": 7,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=7/part.parquet"
+      },
+      {
+        "month_index": 8,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=8/part.parquet"
+      },
+      {
+        "month_index": 9,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=9/part.parquet"
+      },
+      {
+        "month_index": 10,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=10/part.parquet"
+      },
+      {
+        "month_index": 11,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=11/part.parquet"
+      },
+      {
+        "month_index": 12,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=12/part.parquet"
+      },
+      {
+        "month_index": 13,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=13/part.parquet"
+      },
+      {
+        "month_index": 14,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=14/part.parquet"
+      },
+      {
+        "month_index": 15,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=15/part.parquet"
+      },
+      {
+        "month_index": 16,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=16/part.parquet"
+      },
+      {
+        "month_index": 17,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=17/part.parquet"
+      },
+      {
+        "month_index": 18,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=18/part.parquet"
+      },
+      {
+        "month_index": 19,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=19/part.parquet"
+      },
+      {
+        "month_index": 20,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=20/part.parquet"
+      },
+      {
+        "month_index": 21,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=21/part.parquet"
+      },
+      {
+        "month_index": 22,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=22/part.parquet"
+      },
+      {
+        "month_index": 23,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=23/part.parquet"
+      },
+      {
+        "month_index": 24,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=24/part.parquet"
+      },
+      {
+        "month_index": 25,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=25/part.parquet"
+      },
+      {
+        "month_index": 26,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=26/part.parquet"
+      },
+      {
+        "month_index": 27,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=27/part.parquet"
+      },
+      {
+        "month_index": 28,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=28/part.parquet"
+      },
+      {
+        "month_index": 29,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=29/part.parquet"
+      },
+      {
+        "month_index": 30,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=30/part.parquet"
+      },
+      {
+        "month_index": 31,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=31/part.parquet"
+      },
+      {
+        "month_index": 32,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=32/part.parquet"
+      },
+      {
+        "month_index": 33,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=33/part.parquet"
+      },
+      {
+        "month_index": 34,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=34/part.parquet"
+      },
+      {
+        "month_index": 35,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=35/part.parquet"
+      },
+      {
+        "month_index": 36,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=36/part.parquet"
+      },
+      {
+        "month_index": 37,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=37/part.parquet"
+      },
+      {
+        "month_index": 38,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=38/part.parquet"
+      },
+      {
+        "month_index": 39,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=39/part.parquet"
+      },
+      {
+        "month_index": 40,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=40/part.parquet"
+      },
+      {
+        "month_index": 41,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=41/part.parquet"
+      },
+      {
+        "month_index": 42,
+        "rows": 10000,
+        "path": "artifacts/store/features/month_index=42/part.parquet"
+      }
+    ],
+    "schema_hash": "609ac4a1d3cb2c3ded3ca8b92741b86aeecf952dfedbff99f36ecd97ab0d3e86"
+  },
+  "leakage": {
+    "passed": true,
+    "n_checks": 8,
+    "n_failed": 0,
+    "checks": [
+      {
+        "name": "no_target_column_as_feature_source",
+        "passed": true,
+        "detail": "No declared feature sources a target column",
+        "evidence": {
+          "offenders": {}
+        }
+      },
+      {
+        "name": "no_loan_id_predictive_encoding",
+        "passed": true,
+        "detail": "loan_id is used only as an identity key",
+        "evidence": {
+          "source_offenders": [],
+          "name_offenders": []
+        }
+      },
+      {
+        "name": "no_positive_temporal_offset",
+        "passed": true,
+        "detail": "Every feature declares temporal_offset <= 0",
+        "evidence": {
+          "offenders": {}
+        }
+      },
+      {
+        "name": "elevated_risk_features_are_justified",
+        "passed": true,
+        "detail": "Every medium/high-risk feature carries a written justification",
+        "evidence": {
+          "offenders": []
+        }
+      },
+      {
+        "name": "no_centered_windows_or_negative_shifts",
+        "passed": true,
+        "detail": "No centered rolling window or negative shift in any feature family",
+        "evidence": {
+          "offenders": []
+        }
+      },
+      {
+        "name": "servicer_asof_join_is_backward_only",
+        "passed": true,
+        "detail": "All 2 merge_asof call(s) are direction='backward'",
+        "evidence": {
+          "offenders": [],
+          "n_joins": 2
+        }
+      },
+      {
+        "name": "point_in_time_truncation_equality",
+        "passed": true,
+        "detail": "600 row(s) reproduce bit-for-bit from a truncated panel",
+        "evidence": {
+          "mismatches": [],
+          "n_rows_compared": 600,
+          "cut_months": [
+            18,
+            27,
+            34
+          ]
+        }
+      },
+      {
+        "name": "no_suspicious_univariate_auc",
+        "passed": true,
+        "detail": "544 feature/target pair(s) checked; none exceed AUC 0.97",
+        "evidence": {
+          "flagged": [],
+          "unjustified": [],
+          "threshold": 0.97,
+          "n_checked": 544
+        }
+      }
+    ]
+  },
+  "row_counts": {
+    "features": 420000
+  },
+  "outputs": {
+    "feature_store": "artifacts/store/features"
+  }
+}

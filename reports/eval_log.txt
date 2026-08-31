@@ -1,0 +1,15 @@
+{"name": "hazard", "event": "artifact.loaded", "level": "info", "logger": "lpie.models.registry", "timestamp": "2026-08-29T05:54:18.447867Z"}
+{"name": "heads", "event": "artifact.loaded", "level": "info", "logger": "lpie.models.registry", "timestamp": "2026-08-29T05:54:18.649332Z"}
+{"name": "stacks", "event": "artifact.loaded", "level": "info", "logger": "lpie.models.registry", "timestamp": "2026-08-29T05:54:18.671107Z"}
+{"name": "calibrators", "event": "artifact.loaded", "level": "info", "logger": "lpie.models.registry", "timestamp": "2026-08-29T05:54:18.678170Z"}
+{"name": "thresholds", "event": "artifact.loaded", "level": "info", "logger": "lpie.models.registry", "timestamp": "2026-08-29T05:54:18.681048Z"}
+{"name": "anomaly", "event": "artifact.loaded", "level": "info", "logger": "lpie.models.registry", "timestamp": "2026-08-29T05:54:20.560130Z"}
+site-packages/shap/explainers/_tree.py:632: UserWarning: LightGBM binary classifier with TreeExplainer shap values output has changed to a list of ndarray
+  warnings.warn(
+site-packages/shap/explainers/_tree.py:632: UserWarning: LightGBM binary classifier with TreeExplainer shap values output has changed to a list of ndarray
+  warnings.warn(
+site-packages/shap/explainers/_tree.py:632: UserWarning: LightGBM binary classifier with TreeExplainer shap values output has changed to a list of ndarray
+  warnings.warn(
+{"name": "shap_global", "path": "artifacts/models/shap_global.joblib", "bytes": 3759, "event": "artifact.saved", "level": "info", "logger": "lpie.models.registry", "timestamp": "2026-08-29T05:55:40.232771Z"}
+{"elapsed_ms": 89763.94519599853, "event": "stage.evaluate.done", "level": "info", "logger": "lpie.pipelines.evaluate", "timestamp": "2026-08-29T05:55:47.045001Z"}
+STATUS: ?

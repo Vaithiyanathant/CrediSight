@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: lpie-backend
+    runtime: python
+    region: oregon
+    plan: free
+    buildCommand: chmod +x render_build.sh && ./render_build.sh
+    startCommand: chmod +x render_start.sh && ./render_start.sh
+    healthCheckPath: /livez
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: HF_REPO_ID
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: LPIE_FAIL_STARTUP_ON_MISSING_ARTIFACTS
+        value: "false"
+      - key: LPIE_LOG_JSON
+        value: "true"
+      - key: LPIE_DUCKDB_THREADS
+        value: "1"
+      - key: LPIE_DUCKDB_MEMORY_LIMIT
+        value: "400MB"
+    autoDeploy: true

@@ -1,0 +1,5 @@
+# Trained model artifacts are binary and large (anomaly.joblib is ~190 MB).
+# They are stored with Git LFS; run `git lfs install` before cloning or pushing.
+*.joblib filter=lfs diff=lfs merge=lfs -text
+# Keep line endings sane for shell scripts on Windows checkouts.
+*.sh text eol=lf

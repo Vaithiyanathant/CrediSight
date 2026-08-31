@@ -1,0 +1,115 @@
+{
+  "version": "1.0",
+  "generated": "2026-08-27",
+  "description": "Deterministic validation rules for Loan Performance Intelligence Engine",
+  "rules": [
+    {
+      "rule_id": "VR-001",
+      "name": "balance_not_exceed_original",
+      "description": "current_balance must not exceed original_balance*1.05 unless modification_flag=1",
+      "field": "current_balance",
+      "severity": "ERROR",
+      "exception_type": "balance_anomaly",
+      "condition": "current_balance <= original_balance*1.05 OR modification_flag==1"
+    },
+    {
+      "rule_id": "VR-002",
+      "name": "dpd_status_consistency",
+      "description": "days_past_due must match current_status: Current->0, 30DPD->30, 60DPD->60, 90DPD->90",
+      "field": "days_past_due",
+      "severity": "ERROR",
+      "exception_type": "status_dpd_mismatch",
+      "condition": "Current->0, 30DPD->[25-35], 60DPD->[55-65], 90DPD->[85-120]"
+    },
+    {
+      "rule_id": "VR-003",
+      "name": "date_validity",
+      "description": "reporting_month >= origination_month AND loan_age_months == months_diff",
+      "field": "reporting_month",
+      "severity": "ERROR",
+      "exception_type": "date_inconsistency",
+      "condition": "reporting_month >= origination_month"
+    },
+    {
+      "rule_id": "VR-004",
+      "name": "prepaid_balance_zero",
+      "description": "Prepaid loans must have current_balance=0",
+      "field": "current_balance",
+      "severity": "ERROR",
+      "exception_type": "balance_anomaly",
+      "condition": "IF prepayment_flag==1 THEN current_balance==0"
+    },
+    {
+      "rule_id": "VR-005",
+      "name": "closed_balance_zero",
+      "description": "Closed loans must have current_balance=0",
+      "field": "current_balance",
+      "severity": "ERROR",
+      "exception_type": "balance_anomaly",
+      "condition": "IF current_status==Closed THEN current_balance==0"
+    },
+    {
+      "rule_id": "VR-006",
+      "name": "doc_gap_check",
+      "description": "Missing critical documents trigger doc_gap exception",
+      "field": "document_status",
+      "severity": "WARNING",
+      "exception_type": "doc_gap",
+      "condition": "document_status NOT IN [Missing-Income, Missing-Appraisal, Missing-ID]"
+    },
+    {
+      "rule_id": "VR-007",
+      "name": "servicer_conflict",
+      "description": "Servicer reported balance deviating >10% from master flags conflict",
+      "field": "current_balance",
+      "severity": "WARNING",
+      "exception_type": "servicer_conflict",
+      "condition": "ABS(current_balance-servicer_balance)/current_balance<=0.10"
+    },
+    {
+      "rule_id": "VR-008",
+      "name": "rate_range",
+      "description": "interest_rate must be 1.0-20.0%",
+      "field": "interest_rate",
+      "severity": "ERROR",
+      "exception_type": "rate_out_of_range",
+      "condition": "1.0 <= interest_rate <= 20.0"
+    },
+    {
+      "rule_id": "VR-009",
+      "name": "remaining_term_valid",
+      "description": "remaining_term_months must be 0 to loan_term_months",
+      "field": "remaining_term_months",
+      "severity": "ERROR",
+      "exception_type": "term_inconsistency",
+      "condition": "0 <= remaining_term_months <= loan_term_months"
+    },
+    {
+      "rule_id": "VR-010",
+      "name": "stale_record",
+      "description": "last_updated_at must be within 65 days of reporting_month end",
+      "field": "last_updated_at",
+      "severity": "WARNING",
+      "exception_type": "stale_record",
+      "condition": "days_since_last_update <= 65"
+    },
+    {
+      "rule_id": "VR-011",
+      "name": "loss_severity_default_only",
+      "description": "loss_severity_band non-NA only when default_flag=1",
+      "field": "loss_severity_band",
+      "severity": "WARNING",
+      "exception_type": "loss_sev_inconsistency",
+      "condition": "IF default_flag==0 THEN loss_severity_band==N/A"
+    },
+    {
+      "rule_id": "VR-012",
+      "name": "modification_high_dpd",
+      "description": "Loans at 90DPD or Default without modification should be reviewed",
+      "field": "modification_flag",
+      "severity": "WARNING",
+      "exception_type": "missing_modification",
+      "condition": "IF current_status IN [90DPD,Default] AND modification_flag==0 THEN flag"
+    }
+  ]
+}

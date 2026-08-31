@@ -1,0 +1,21 @@
+loan_id,reporting_month,prob_next_3m_delinquency,prob_next_6m_delinquency,prob_next_12m_default,prob_next_12m_prepayment,predicted_next_state,anomaly_score,exception_required,exception_type,top_driver_1,top_driver_2,top_driver_3,reviewer_action,model_confidence
+LN0000001,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000002,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000003,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000004,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000005,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000006,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000007,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000008,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000009,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000010,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000011,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000012,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000013,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000014,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000015,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000016,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000017,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000018,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000019,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0
+LN0000020,2024-01,0.0,0.0,0.0,0.0,Current,0.0,0,None,,,,No Action,0.0

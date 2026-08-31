@@ -1,0 +1,5 @@
+scenario_name,description,gdp_growth_pct,unemployment_rate_pct,hpi_change_pct,interest_rate_shock_bps,credit_spread_shock_bps,prepayment_cpr_assumption_pct,default_rate_multiplier,delinquency_rate_multiplier,prepayment_rate_multiplier
+Base,"Baseline macro: moderate rates, stable credit",2.3,4.1,3.5,0,0,8.0,1.0,1.0,1.0
+Adverse-Credit,"Adverse credit: rising unemployment, HPI decline",-0.5,7.8,-8.0,50,200,4.0,2.8,2.5,0.5
+High-Prepayment,Rate-drop: mass refinance wave,3.1,3.5,5.2,-150,-30,30.0,0.7,0.8,3.5
+Stagflation,"High inflation, low growth, rising rates",0.2,6.0,-3.0,250,100,2.0,1.9,1.7,0.3

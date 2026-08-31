@@ -1,0 +1,364 @@
+# =============================================================================
+# LPIE — master runtime configuration
+# Every window, horizon and threshold below is a DEFAULT. Anything that can be
+# derived from the data (censoring cliffs, panel bounds, state space) is
+# re-derived at runtime by the profiler and overrides these values.
+# =============================================================================
+project:
+  name: "Loan Performance Intelligence Engine"
+  short_name: "LPIE"
+  model_version: "lpie-v1.0.0"
+  feature_version: "fv-1.0.0"
+  seed: 20260828
+
+paths:
+  dataset_dir: "dataset"
+  artifacts_dir: "artifacts"
+  models_dir: "artifacts/models"
+  store_dir: "artifacts/store"
+  feature_store_dir: "artifacts/store/features"
+  mlruns_dir: "artifacts/mlruns"
+  reports_dir: "reports"
+  logs_dir: "logs"
+  duckdb_path: "artifacts/store/lpie.duckdb"
+  sqlite_path: "artifacts/store/lpie_app.sqlite"
+  rag_index_dir: "artifacts/store/rag"
+  submission_path: "artifacts/submission.csv"
+  submission_manifest_path: "artifacts/submission_manifest.json"
+
+data:
+  files:
+    static: "loan_static_attributes.csv"
+    train: "loan_monthly_performance_train.csv"
+    test: "loan_monthly_performance_test.csv"
+    servicer: "servicer_updates.csv"
+    macro: "macro_scenarios.csv"
+    submission_template: "submission_template.csv"
+    data_dictionary: "data_dictionary.md"
+    validation_rules: "validation_rules.json"
+  # Panel clock. month_index is the ONLY trustworthy time key: reporting_month is
+  # corrupted in the supplied pack (month_index 1 and 2 both map to 2021-01).
+  time_key: "month_index"
+  entity_key: "loan_id"
+  train_month_min: 1
+  train_month_max: 36
+  test_month_min: 37
+  test_month_max: 42
+  submission_reporting_month: "2024-01"
+  # Columns that must never enter a feature matrix.
+  target_columns:
+    - next_3m_delinquency_flag
+    - next_6m_delinquency_flag
+    - next_12m_default_flag
+    - next_12m_prepayment_flag
+    - next_state
+    - exception_required
+    - exception_type
+  banned_feature_columns:
+    - loan_id
+    - loss_severity_band          # 100% null in test — guaranteed drift bomb
+    - reporting_month             # corrupted clock
+    - origination_month           # string; encoded form used instead
+    - last_updated_at             # raw date; days_since_last_update used instead
+
+states:
+  # Order matters: used for ordinal severity encoding and weighted kappa.
+  all: [Current, 30DPD, 60DPD, 90DPD, Default, Prepaid, Closed]
+  active: [Current, 30DPD, 60DPD, 90DPD, Default]
+  terminal: [Prepaid, Closed]
+  delinquent: [30DPD, 60DPD, 90DPD, Default]
+  severity_rank:
+    Current: 0
+    Prepaid: 0
+    Closed: 0
+    30DPD: 1
+    60DPD: 2
+    90DPD: 3
+    Default: 4
+  # Legal transition mask (measured §1.3). Impossible transitions are zeroed
+  # pre-normalisation in the hazard model.
+  legal_transitions:
+    Current:  [Current, 30DPD, Prepaid]
+    30DPD:    [Current, 30DPD, 60DPD, Prepaid]
+    60DPD:    [Current, 30DPD, 60DPD, 90DPD, Prepaid]
+    90DPD:    [Current, 60DPD, 90DPD, Default, Prepaid]
+    Default:  [Default, Closed]
+    Prepaid:  [Prepaid]
+    Closed:   [Closed]
+
+heads:
+  # horizon = label look-ahead in months. max_valid_month = panel_max - horizon.
+  next_3m_delinquency:
+    target: next_3m_delinquency_flag
+    type: binary
+    horizon: 3
+    max_valid_month: 33
+    primary_metric: pr_auc
+  next_6m_delinquency:
+    target: next_6m_delinquency_flag
+    type: binary
+    horizon: 6
+    max_valid_month: 30
+    primary_metric: pr_auc
+  next_12m_default:
+    target: next_12m_default_flag
+    type: binary
+    horizon: 12
+    max_valid_month: 24
+    primary_metric: recall_at_precision
+  next_12m_prepayment:
+    target: next_12m_prepayment_flag
+    type: binary
+    horizon: 12
+    max_valid_month: 24
+    primary_metric: pr_auc
+  next_state:
+    target: next_state
+    type: multiclass
+    horizon: 1
+    max_valid_month: 35
+    primary_metric: macro_f1
+  exception_required:
+    target: exception_required
+    type: binary
+    horizon: 0
+    max_valid_month: 36
+    primary_metric: f1
+
+validation_split:
+  strategy: purged_embargoed_walk_forward
+  n_folds: 4
+  min_train_months: 15
+  step_months: 3
+  valid_window_months: 6
+  # Calibration slice sits AFTER the final training window and BEFORE production
+  # scoring, so calibration is learned genuinely out-of-time.
+  calibration_slice_months: 6
+  min_train_months_floor: 6
+  # Long-horizon heads get shorter validation windows so the panel supports more
+  # than one honest fold: with h=12 the censoring bound is month 24 and the
+  # embargo consumes 12 more, leaving very little room.
+  per_head:
+    next_12m_default:
+      valid_window_months: 3
+      step_months: 3
+      min_train_months: 6
+      n_folds: 3
+    next_12m_prepayment:
+      valid_window_months: 3
+      step_months: 3
+      min_train_months: 6
+      n_folds: 3
+    next_6m_delinquency:
+      min_train_months: 12
+
+dq:
+  weights:
+    completeness: 0.20
+    validity: 0.25
+    consistency: 0.25
+    timeliness: 0.10
+    uniqueness: 0.10
+    cross_source: 0.10
+  severity_weight:
+    ERROR: 1.0
+    WARNING: 0.4
+  grades:
+    A: 95.0
+    B: 85.0
+    C: 70.0
+    D: 50.0
+  required_fields:
+    - loan_id
+    - month_index
+    - current_status
+    - current_balance
+    - original_balance
+    - interest_rate
+    - loan_age_months
+    - remaining_term_months
+    - days_past_due
+    - document_status
+    - credit_score_band
+    - state
+
+drift:
+  psi_bins: 10
+  thresholds:
+    keep: 0.10
+    monitor: 0.25
+  retrain_trigger:
+    psi_threshold: 0.25
+    min_features_over_threshold: 3
+    adversarial_auc_threshold: 0.80
+  # Deterministic seasoning columns. Any two windows N months apart move these
+  # by exactly N on a perfectly healthy book, so they are reported but never
+  # allowed to fire the retrain trigger, and are hidden from the adversarial
+  # classifier where loan_age_months alone separates the windows almost
+  # perfectly. Add a feature here only if its shift is a function of the
+  # calendar, not of the population.
+  seasoning_features:
+    - loan_age_months
+    - remaining_term_months
+  default_ref_window: "31-36"
+  default_cur_window: "37-42"
+
+thresholds:
+  # Business decision layer. Optimised on the calibration slice, persisted to
+  # artifacts/models/thresholds.json; these are the bootstrap defaults.
+  # F2 is used for 12m default: at 1.86% base rate, missing a default (false
+  # negative) costs far more than a false positive. F2 weights recall 2x
+  # higher than precision, shifting the threshold lower to catch more events.
+  default_head:
+    objective: f2
+    min_precision: 0.15
+  exception_head:
+    objective: f1
+  reviewer_action:
+    tau_hi: 0.15          # p_default -> Escalate
+    tau_lo: 0.05          # p_default -> Flag
+    anomaly_escalate: 0.90
+    anomaly_flag: 0.70
+  loss_severity_midpoint:
+    "0%": 0.0
+    "1-10%": 0.055
+    "11-25%": 0.18
+    "26-50%": 0.38
+    ">50%": 0.65
+    "N/A": 0.35           # portfolio prior used when severity is unobserved
+
+anomaly:
+  isolation_forest:
+    n_estimators: 300
+    max_samples: 8192
+    contamination: 0.05
+  ecod:
+    enabled: true
+  autoencoder:
+    enabled: true
+    hidden: [64, 16, 64]
+    epochs: 12
+    batch_size: 2048
+    lr: 0.003
+  self_zscore:
+    window: 12
+    min_history: 4
+  fusion:
+    error_base: 0.60
+    error_span: 0.40
+    warning_base: 0.30
+    warning_span: 0.30
+    unsupervised_cap: 0.60
+
+scenario:
+  default_n_paths: 1000
+  default_horizon_months: 24
+  max_n_paths: 5000
+  max_horizon_months: 60
+  confidence_levels: [5, 50, 95]
+  var_level: 95
+  # macro -> feature / hazard transmission elasticities (log-odds space)
+  transmission:
+    unemployment_delta_to_delinq_logodds: 0.28
+    gdp_delta_to_cure_logodds: 0.09
+    hpi_change_to_default_logodds: -0.035
+    rate_shock_bps_to_refi_incentive: -0.01     # per bp, in rate points
+    credit_spread_bps_to_refi_logodds: -0.0022
+    cpr_anchor_weight: 0.5
+  reanchor:
+    enabled: true
+    max_iterations: 25
+    tolerance: 0.005
+
+explain:
+  shap_sample_rows: 20000
+  shap_background_rows: 500
+  conformal_alpha: 0.10
+  counterfactual:
+    actionable_features:
+      - days_past_due
+      - modification_flag
+      - dpd_lag_1
+      - dpd_max_3m
+      - consecutive_current_streak
+      - document_status_severity
+      - servicer_bal_gap_pct
+    max_changes: 3
+    max_candidates: 4000
+  fairness:
+    proxy_dimensions: [state, credit_score_band, servicer_name]
+
+copilot:
+  provider: groq
+  model: "qwen/qwen3.8-27b"
+  temperature: 0.2
+  max_tokens: 1200
+  timeout_s: 45
+  rag:
+    top_k: 6
+    chunk_chars: 900
+    chunk_overlap: 150
+    embedder: "sentence-transformers/all-MiniLM-L6-v2"
+    fallback_embedder: "tfidf"      # deterministic, no network, no torch
+  verifier:
+    numeric_rel_tolerance: 0.02
+    numeric_abs_tolerance: 0.005
+    max_regenerations: 1
+    require_min_named_fields: 2
+  banner: "AI RECOMMENDATION — NOT A DECISION"
+  forbidden_phrases:
+    - "we will foreclose"
+    - "initiate foreclosure"
+    - "recommend foreclosure"
+    - "loan is approved"
+    - "loan is denied"
+    - "deny the loan"
+    - "approve the loan"
+    - "we approve"
+    - "we deny"
+    - "adverse action"
+    - "guaranteed to default"
+    - "will definitely"
+  causal_markers:
+    - "caused by"
+    - "because the borrower"
+    - "due to the borrower losing"
+    - "as a result of unemployment"
+    - "this caused"
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  root_path: ""
+  cors_origins: ["http://localhost:3000", "http://localhost:3001", "http://localhost:5173", "http://127.0.0.1:3000", "http://127.0.0.1:3001", "http://127.0.0.1:5173"]
+  cors_allow_credentials: false
+  request_id_header: "X-Request-ID"
+  max_request_bytes: 16777216          # 16 MiB hard body cap
+  max_predict_rows: 5000               # batch inference cap per request
+  max_page_size: 1000
+  request_timeout_s: 120
+  api_key_enabled: false               # toggled by LPIE_API_KEY / LPIE_API_KEY_ENABLED
+  api_key_header: "X-API-Key"
+  public_paths: ["/healthz", "/livez", "/readyz", "/metrics", "/docs", "/redoc", "/openapi.json"]
+  rate_limit:
+    enabled: true
+    requests_per_minute: 600
+    burst: 120
+
+runtime:
+  # Tuned for a 4 GiB container: caches are bounded, the panel is memory-mapped
+  # from Parquet and only the requested month partitions are resident.
+  lru_model_cache_size: 24
+  feature_partition_cache_size: 8
+  prediction_cache_size: 4096
+  duckdb_memory_limit: "1GB"
+  duckdb_threads: 4
+  parquet_row_group_size: 65536
+  eager_load_features_on_startup: false
+  fail_startup_on_missing_artifacts: false   # degrade to 503 per-endpoint instead
+
+logging:
+  level: "INFO"
+  json: true
+  sample_rate: 1.0
+  slow_request_ms: 2000

@@ -1,0 +1,69 @@
+[project]
+name = "lpie"
+version = "1.0.0"
+description = "Loan Performance Intelligence Engine — governed AI loan-performance intelligence platform"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  # ---- API / serving ----
+  "fastapi>=0.118,<0.121",
+  "uvicorn[standard]>=0.38,<0.41",
+  "pydantic>=2.11,<3",
+  "pydantic-settings>=2.7,<3",
+  "python-multipart>=0.0.20",
+  "httpx>=0.28,<0.29",
+  "structlog>=25.1",
+  "orjson>=3.10",
+  "PyYAML>=6.0",
+  "python-dotenv>=1.0",
+  # ---- data ----
+  "duckdb>=1.1,<2",
+  "pandas>=2.2,<3",
+  "numpy>=2.0,<3",
+  "pyarrow>=17",
+  "scipy>=1.14",
+  # ---- modelling ----
+  "scikit-learn>=1.6",
+  "lightgbm>=4.5",
+  "xgboost>=2.1",
+  "catboost>=1.2.7",
+  "lifelines>=0.30",
+  "pyod>=2.0",
+  "shap>=0.46",
+  "optuna>=4.1",
+  "mlflow>=2.19",
+  "joblib>=1.4",
+  # ---- copilot ----
+  "groq>=0.13",            # primary LLM provider
+  "anthropic>=0.40",       # optional fallback provider
+]
+
+[project.optional-dependencies]
+torch = ["torch>=2.5"]
+rag = ["faiss-cpu>=1.9", "sentence-transformers>=3.3"]
+dev = ["pytest>=8.3", "pytest-cov>=6.0", "pytest-asyncio>=0.25", "ruff>=0.8"]
+load = ["locust>=2.32"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+markers = [
+  "slow: long-running tests (training, monte-carlo)",
+  "artifacts: requires trained model artifacts",
+]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::FutureWarning"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "W"]
+ignore = ["E501", "B008"]

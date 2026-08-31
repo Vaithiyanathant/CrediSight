@@ -1,0 +1,141 @@
+{
+  "status": "ok",
+  "path": "artifacts/submission.csv",
+  "n_rows": 10000,
+  "validation": {
+    "valid": true,
+    "n_rows": 10000,
+    "n_loans": 10000,
+    "n_errors": 0,
+    "n_warnings": 0,
+    "errors": [],
+    "warnings": [],
+    "contract": {
+      "table": "submission",
+      "n_rows": 10000,
+      "n_columns": 15,
+      "columns_missing_optional": [],
+      "primary_key": {
+        "key": [
+          "loan_id",
+          "reporting_month"
+        ],
+        "n_duplicates": 0
+      },
+      "findings": [],
+      "passed": true
+    },
+    "summary": {
+      "mean_probabilities": {
+        "prob_next_3m_delinquency": 0.03685,
+        "prob_next_6m_delinquency": 0.05751,
+        "prob_next_12m_default": 0.007031,
+        "prob_next_12m_prepayment": 0.658314
+      },
+      "predicted_next_state_distribution": {
+        "Prepaid": 5597,
+        "Current": 3498,
+        "Closed": 496,
+        "60DPD": 209,
+        "30DPD": 83,
+        "Default": 62,
+        "90DPD": 55
+      },
+      "reviewer_action_distribution": {
+        "No Action": 8221,
+        "Flag": 1675,
+        "Escalate": 104
+      },
+      "exception_rate": 0.165,
+      "mean_model_confidence": 0.875922
+    },
+    "template": "submission_template.csv"
+  },
+  "manifest": {
+    "generated_at": "2026-08-30T04:38:17.232Z",
+    "submission_file": "submission.csv",
+    "submission_sha256": "48dc710e52245308ab5ff02c52699f83854c548d71e1433872b4b9c257020276",
+    "n_rows": 10000,
+    "n_loans": 10000,
+    "reporting_month": "2024-01",
+    "data_sha256": "cec3686c7020301af8101478f95f05bdb31c661d4e46472f807bee23ede15b2e",
+    "input_file_hashes": {
+      "static": "03ed5ad5bc0855a52715f116c1195b1b1b182b5c2a328147e0343102cf146bb0",
+      "train": "01e6ca79e86602085df2ed6e131de02ae775378980e950f2d67ecbd4dd459ef2",
+      "test": "648460f27658d8f065e4986039e263de2284fd4c40fcda93b1edff1a2a12e467",
+      "servicer": "204ec5057442380c908c27ddc56aa4aeacafde98faedb32517e1356f5aacd702",
+      "macro": "afdcce687555b647983adf3c8a8c386da643613df17d36bdf564d025b5597d11",
+      "submission_template": "7b6587621d99e760d9eae6e77d3b79374d404a9558dc0646c98f0442ac255d83",
+      "data_dictionary": "83bb4bc04975e832c2f4c38ee90cf10b2991db757bfc9a7caba0aca9286f98fc",
+      "validation_rules": "57219eeecd32339bbaef7221fcb5fc8bf9ab2318afd2258319dc4f3c80a3c5e8"
+    },
+    "git_sha": "e3ac14771aafc9825f97b577a6b44903637d2fd5",
+    "model_version": "lpie-v1.0.0",
+    "feature_version": "fv-1.0.0",
+    "model_versions_by_head": {
+      "exception_required": "lpie-v1.0.0",
+      "next_12m_default": "lpie-v1.0.0",
+      "next_12m_prepayment": "lpie-v1.0.0",
+      "next_3m_delinquency": "lpie-v1.0.0",
+      "next_6m_delinquency": "lpie-v1.0.0",
+      "next_state": "lpie-v1.0.0"
+    },
+    "feature_hash": "43db61440e5ebf9796fc764d222d4ac819c831beb327e0f5e5c2a179591974b9",
+    "config_hash": "9fdd6ab503a0e5370932a755e0cffd68c26e517cc7431befa929f157ad15d5f8",
+    "config_path": "config/config.yaml",
+    "requirements_hash": "4f1aa0a9b3c3e213bb8d37d7d416f900cde36ffc9fd02c58e8777bfb874474b9",
+    "pyproject_hash": "5eeec59b7fcf0a4ea17229b9739e024d3017f5bb80f90d9ffdf7f9d342fb041b",
+    "seed": 20260828,
+    "reproduce_command": "make all",
+    "as_of_month_index": 37,
+    "validation": {
+      "valid": true,
+      "n_rows": 10000,
+      "n_loans": 10000,
+      "n_errors": 0,
+      "n_warnings": 0,
+      "contract": {
+        "table": "submission",
+        "n_rows": 10000,
+        "n_columns": 15,
+        "columns_missing_optional": [],
+        "primary_key": {
+          "key": [
+            "loan_id",
+            "reporting_month"
+          ],
+          "n_duplicates": 0
+        },
+        "findings": [],
+        "passed": true
+      },
+      "summary": {
+        "mean_probabilities": {
+          "prob_next_3m_delinquency": 0.03685,
+          "prob_next_6m_delinquency": 0.05751,
+          "prob_next_12m_default": 0.007031,
+          "prob_next_12m_prepayment": 0.658314
+        },
+        "predicted_next_state_distribution": {
+          "Prepaid": 5597,
+          "Current": 3498,
+          "Closed": 496,
+          "60DPD": 209,
+          "30DPD": 83,
+          "Default": 62,
+          "90DPD": 55
+        },
+        "reviewer_action_distribution": {
+          "No Action": 8221,
+          "Flag": 1675,
+          "Escalate": 104
+        },
+        "exception_rate": 0.165,
+        "mean_model_confidence": 0.875922
+      },
+      "template": "submission_template.csv"
+    },
+    "n_validation_errors": 0,
+    "scoring_degraded_components": []
+  }
+}

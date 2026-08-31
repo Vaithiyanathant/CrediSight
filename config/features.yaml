@@ -1,0 +1,4751 @@
+feature_version: fv-1.0.0
+contract_hash: 43db61440e5ebf9796fc764d222d4ac819c831beb327e0f5e5c2a179591974b9
+n_features: 145
+families:
+  static:
+  - original_balance
+  - log_original_balance
+  - interest_rate
+  - loan_term_months
+  - credit_score_band_ord
+  - ltv_band_ord
+  - dti_band_ord
+  - credit_score_band
+  - state
+  - loan_purpose
+  - occupancy_type
+  - property_type
+  - servicer_name
+  - vintage_year_num
+  - origination_month_num
+  - orig_rate_vs_vintage_median
+  balance:
+  - current_balance
+  - bal_ratio
+  - scheduled_balance
+  - amort_residual
+  - amort_residual_pct
+  - bal_diff_1
+  - bal_diff_3
+  - bal_diff_6
+  - bal_diff_12
+  - pay_rate
+  - smm
+  - cpr
+  - bal_volatility_6m
+  - bal_trend_6m
+  - months_since_balance_change
+  - balance_zero_flag
+  - balance_exceeds_original_flag
+  - modification_flag
+  - months_since_modification
+  - bal_z_self_12m
+  delinquency:
+  - dpd
+  - dpd_was_imputed
+  - current_status
+  - status_severity
+  - dpd_lag_1
+  - dpd_lag_2
+  - dpd_lag_3
+  - dpd_lag_6
+  - dpd_lag_12
+  - dpd_delta_1
+  - dpd_delta_3
+  - dpd_max_3m
+  - dpd_max_6m
+  - dpd_max_12m
+  - dpd_max_life
+  - dpd_mean_3m
+  - dpd_mean_6m
+  - n_delinquent_months_6m
+  - n_delinquent_months_12m
+  - n_delinquent_months_life
+  - months_since_first_delinquency
+  - months_since_last_current
+  - worst_status_life
+  - n_status_changes_12m
+  - roll_rate_own_12m
+  - consecutive_current_streak
+  - ever_60plus
+  - ever_90plus
+  - cure_count
+  - delinquency_entropy_12m
+  - is_terminal
+  - default_flag
+  prepay:
+  - refi_incentive
+  - refi_incentive_x_ltv
+  - burnout
+  - burnout_months
+  - seasoning_frac
+  - age_bucket
+  - loan_size_decile
+  - is_refi_purpose
+  - months_to_maturity
+  - rate_percentile_in_vintage
+  - sato
+  - loan_age_months
+  - prepayment_flag
+  cohort:
+  - peer_vintage_credit_dpd_mean
+  - peer_vintage_credit_delinq_rate
+  - peer_state_delinq_rate
+  - peer_servicer_delinq_rate
+  - peer_servicer_prepay_rate
+  - servicer_dq_rate_to_date
+  - dpd_z_vs_peer
+  - bal_ratio_z_vs_peer
+  - portfolio_delinq_rate_to_date
+  - portfolio_prepay_rate_to_date
+  dq:
+  - dq_score
+  - dq_completeness
+  - dq_validity
+  - dq_consistency
+  - dq_timeliness
+  - dq_uniqueness
+  - dq_cross_source
+  - n_rules_violated
+  - rule_vr_001_violated
+  - rule_vr_002_violated
+  - rule_vr_006_violated
+  - rule_vr_007_violated
+  - rule_vr_010_violated
+  - rule_vr_012_violated
+  - rule_vr_013_violated
+  - rule_vr_014_violated
+  - days_since_last_update
+  - source_system
+  - source_system_changed_flag
+  - n_source_switches_life
+  - document_status_severity
+  - document_status_missing_flag
+  servicer:
+  - has_servicer_record
+  - servicer_bal_gap_pct
+  - servicer_rate_gap_bps
+  - servicer_status_matches
+  - days_since_servicer_update
+  - servicer_stale_flag
+  - n_servicer_updates_to_date
+  - n_conflicts_life
+  - servicer_conflict_balance_mismatch
+  - servicer_conflict_status_conflict
+  - servicer_conflict_stale_record
+  - servicer_conflict_rate_discrepancy
+  temporal:
+  - month_index
+  - calendar_month_sin
+  - calendar_month_cos
+  - quarter
+  - is_year_end
+  - months_since_panel_start
+  - months_observed
+  - is_first_observation
+  interactions:
+  - credit_x_ltv
+  - dpd_x_credit
+  - dpd_x_ltv
+  - refi_incentive_x_seasoning
+  - amort_residual_x_modification
+  - dq_score_x_status_severity
+  - servicer_gap_x_dpd
+  - balance_ratio_x_seasoning
+  - burnout_x_incentive
+  - dpd_max_12m_x_cure_count
+  - doc_severity_x_source_manual
+  - age_x_credit
+per_head_allowlist:
+  next_3m_delinquency:
+  - original_balance
+  - log_original_balance
+  - interest_rate
+  - loan_term_months
+  - credit_score_band_ord
+  - ltv_band_ord
+  - dti_band_ord
+  - credit_score_band
+  - state
+  - loan_purpose
+  - occupancy_type
+  - property_type
+  - servicer_name
+  - vintage_year_num
+  - origination_month_num
+  - orig_rate_vs_vintage_median
+  - current_balance
+  - bal_ratio
+  - scheduled_balance
+  - amort_residual
+  - amort_residual_pct
+  - bal_diff_1
+  - bal_diff_3
+  - bal_diff_6
+  - bal_diff_12
+  - pay_rate
+  - smm
+  - cpr
+  - bal_volatility_6m
+  - bal_trend_6m
+  - months_since_balance_change
+  - balance_zero_flag
+  - balance_exceeds_original_flag
+  - modification_flag
+  - months_since_modification
+  - bal_z_self_12m
+  - dpd
+  - dpd_was_imputed
+  - current_status
+  - status_severity
+  - dpd_lag_1
+  - dpd_lag_2
+  - dpd_lag_3
+  - dpd_lag_6
+  - dpd_lag_12
+  - dpd_delta_1
+  - dpd_delta_3
+  - dpd_max_3m
+  - dpd_max_6m
+  - dpd_max_12m
+  - dpd_max_life
+  - dpd_mean_3m
+  - dpd_mean_6m
+  - n_delinquent_months_6m
+  - n_delinquent_months_12m
+  - n_delinquent_months_life
+  - months_since_first_delinquency
+  - months_since_last_current
+  - worst_status_life
+  - n_status_changes_12m
+  - roll_rate_own_12m
+  - consecutive_current_streak
+  - ever_60plus
+  - ever_90plus
+  - cure_count
+  - delinquency_entropy_12m
+  - is_terminal
+  - default_flag
+  - refi_incentive
+  - refi_incentive_x_ltv
+  - burnout
+  - burnout_months
+  - seasoning_frac
+  - age_bucket
+  - loan_size_decile
+  - is_refi_purpose
+  - months_to_maturity
+  - rate_percentile_in_vintage
+  - sato
+  - loan_age_months
+  - prepayment_flag
+  - peer_vintage_credit_dpd_mean
+  - peer_vintage_credit_delinq_rate
+  - peer_state_delinq_rate
+  - peer_servicer_delinq_rate
+  - peer_servicer_prepay_rate
+  - servicer_dq_rate_to_date
+  - dpd_z_vs_peer
+  - bal_ratio_z_vs_peer
+  - portfolio_delinq_rate_to_date
+  - portfolio_prepay_rate_to_date
+  - dq_score
+  - dq_completeness
+  - dq_validity
+  - dq_consistency
+  - dq_timeliness
+  - dq_uniqueness
+  - dq_cross_source
+  - n_rules_violated
+  - rule_vr_001_violated
+  - rule_vr_002_violated
+  - rule_vr_006_violated
+  - rule_vr_007_violated
+  - rule_vr_010_violated
+  - rule_vr_012_violated
+  - rule_vr_013_violated
+  - rule_vr_014_violated
+  - days_since_last_update
+  - source_system
+  - source_system_changed_flag
+  - n_source_switches_life
+  - document_status_severity
+  - document_status_missing_flag
+  - has_servicer_record
+  - servicer_bal_gap_pct
+  - servicer_rate_gap_bps
+  - servicer_status_matches
+  - days_since_servicer_update
+  - servicer_stale_flag
+  - n_servicer_updates_to_date
+  - n_conflicts_life
+  - servicer_conflict_balance_mismatch
+  - servicer_conflict_status_conflict
+  - servicer_conflict_stale_record
+  - servicer_conflict_rate_discrepancy
+  - calendar_month_sin
+  - calendar_month_cos
+  - quarter
+  - is_year_end
+  - months_observed
+  - is_first_observation
+  - credit_x_ltv
+  - dpd_x_credit
+  - dpd_x_ltv
+  - refi_incentive_x_seasoning
+  - amort_residual_x_modification
+  - dq_score_x_status_severity
+  - servicer_gap_x_dpd
+  - balance_ratio_x_seasoning
+  - burnout_x_incentive
+  - dpd_max_12m_x_cure_count
+  - doc_severity_x_source_manual
+  - age_x_credit
+  next_6m_delinquency:
+  - original_balance
+  - log_original_balance
+  - interest_rate
+  - loan_term_months
+  - credit_score_band_ord
+  - ltv_band_ord
+  - dti_band_ord
+  - credit_score_band
+  - state
+  - loan_purpose
+  - occupancy_type
+  - property_type
+  - servicer_name
+  - vintage_year_num
+  - origination_month_num
+  - orig_rate_vs_vintage_median
+  - current_balance
+  - bal_ratio
+  - scheduled_balance
+  - amort_residual
+  - amort_residual_pct
+  - bal_diff_1
+  - bal_diff_3
+  - bal_diff_6
+  - bal_diff_12
+  - pay_rate
+  - smm
+  - cpr
+  - bal_volatility_6m
+  - bal_trend_6m
+  - months_since_balance_change
+  - balance_zero_flag
+  - balance_exceeds_original_flag
+  - modification_flag
+  - months_since_modification
+  - bal_z_self_12m
+  - dpd
+  - dpd_was_imputed
+  - current_status
+  - status_severity
+  - dpd_lag_1
+  - dpd_lag_2
+  - dpd_lag_3
+  - dpd_lag_6
+  - dpd_lag_12
+  - dpd_delta_1
+  - dpd_delta_3
+  - dpd_max_3m
+  - dpd_max_6m
+  - dpd_max_12m
+  - dpd_max_life
+  - dpd_mean_3m
+  - dpd_mean_6m
+  - n_delinquent_months_6m
+  - n_delinquent_months_12m
+  - n_delinquent_months_life
+  - months_since_first_delinquency
+  - months_since_last_current
+  - worst_status_life
+  - n_status_changes_12m
+  - roll_rate_own_12m
+  - consecutive_current_streak
+  - ever_60plus
+  - ever_90plus
+  - cure_count
+  - delinquency_entropy_12m
+  - is_terminal
+  - default_flag
+  - refi_incentive
+  - refi_incentive_x_ltv
+  - burnout
+  - burnout_months
+  - seasoning_frac
+  - age_bucket
+  - loan_size_decile
+  - is_refi_purpose
+  - months_to_maturity
+  - rate_percentile_in_vintage
+  - sato
+  - loan_age_months
+  - prepayment_flag
+  - peer_vintage_credit_dpd_mean
+  - peer_vintage_credit_delinq_rate
+  - peer_state_delinq_rate
+  - peer_servicer_delinq_rate
+  - peer_servicer_prepay_rate
+  - servicer_dq_rate_to_date
+  - dpd_z_vs_peer
+  - bal_ratio_z_vs_peer
+  - portfolio_delinq_rate_to_date
+  - portfolio_prepay_rate_to_date
+  - dq_score
+  - dq_completeness
+  - dq_validity
+  - dq_consistency
+  - dq_timeliness
+  - dq_uniqueness
+  - dq_cross_source
+  - n_rules_violated
+  - rule_vr_001_violated
+  - rule_vr_002_violated
+  - rule_vr_006_violated
+  - rule_vr_007_violated
+  - rule_vr_010_violated
+  - rule_vr_012_violated
+  - rule_vr_013_violated
+  - rule_vr_014_violated
+  - days_since_last_update
+  - source_system
+  - source_system_changed_flag
+  - n_source_switches_life
+  - document_status_severity
+  - document_status_missing_flag
+  - has_servicer_record
+  - servicer_bal_gap_pct
+  - servicer_rate_gap_bps
+  - servicer_status_matches
+  - days_since_servicer_update
+  - servicer_stale_flag
+  - n_servicer_updates_to_date
+  - n_conflicts_life
+  - servicer_conflict_balance_mismatch
+  - servicer_conflict_status_conflict
+  - servicer_conflict_stale_record
+  - servicer_conflict_rate_discrepancy
+  - calendar_month_sin
+  - calendar_month_cos
+  - quarter
+  - is_year_end
+  - months_observed
+  - is_first_observation
+  - credit_x_ltv
+  - dpd_x_credit
+  - dpd_x_ltv
+  - refi_incentive_x_seasoning
+  - amort_residual_x_modification
+  - dq_score_x_status_severity
+  - servicer_gap_x_dpd
+  - balance_ratio_x_seasoning
+  - burnout_x_incentive
+  - dpd_max_12m_x_cure_count
+  - doc_severity_x_source_manual
+  - age_x_credit
+  next_12m_default:
+  - original_balance
+  - log_original_balance
+  - interest_rate
+  - loan_term_months
+  - credit_score_band_ord
+  - ltv_band_ord
+  - dti_band_ord
+  - credit_score_band
+  - state
+  - loan_purpose
+  - occupancy_type
+  - property_type
+  - servicer_name
+  - vintage_year_num
+  - origination_month_num
+  - orig_rate_vs_vintage_median
+  - current_balance
+  - bal_ratio
+  - scheduled_balance
+  - amort_residual
+  - amort_residual_pct
+  - bal_diff_1
+  - bal_diff_3
+  - bal_diff_6
+  - bal_diff_12
+  - pay_rate
+  - smm
+  - cpr
+  - bal_volatility_6m
+  - bal_trend_6m
+  - months_since_balance_change
+  - balance_zero_flag
+  - balance_exceeds_original_flag
+  - modification_flag
+  - months_since_modification
+  - bal_z_self_12m
+  - dpd
+  - dpd_was_imputed
+  - current_status
+  - status_severity
+  - dpd_lag_1
+  - dpd_lag_2
+  - dpd_lag_3
+  - dpd_lag_6
+  - dpd_lag_12
+  - dpd_delta_1
+  - dpd_delta_3
+  - dpd_max_3m
+  - dpd_max_6m
+  - dpd_max_12m
+  - dpd_max_life
+  - dpd_mean_3m
+  - dpd_mean_6m
+  - n_delinquent_months_6m
+  - n_delinquent_months_12m
+  - n_delinquent_months_life
+  - months_since_first_delinquency
+  - months_since_last_current
+  - worst_status_life
+  - n_status_changes_12m
+  - roll_rate_own_12m
+  - consecutive_current_streak
+  - ever_60plus
+  - ever_90plus
+  - cure_count
+  - delinquency_entropy_12m
+  - is_terminal
+  - default_flag
+  - refi_incentive
+  - refi_incentive_x_ltv
+  - burnout
+  - burnout_months
+  - seasoning_frac
+  - age_bucket
+  - loan_size_decile
+  - is_refi_purpose
+  - months_to_maturity
+  - rate_percentile_in_vintage
+  - sato
+  - loan_age_months
+  - prepayment_flag
+  - peer_vintage_credit_dpd_mean
+  - peer_vintage_credit_delinq_rate
+  - peer_state_delinq_rate
+  - peer_servicer_delinq_rate
+  - peer_servicer_prepay_rate
+  - servicer_dq_rate_to_date
+  - dpd_z_vs_peer
+  - bal_ratio_z_vs_peer
+  - portfolio_delinq_rate_to_date
+  - portfolio_prepay_rate_to_date
+  - dq_score
+  - dq_completeness
+  - dq_validity
+  - dq_consistency
+  - dq_timeliness
+  - dq_uniqueness
+  - dq_cross_source
+  - n_rules_violated
+  - rule_vr_001_violated
+  - rule_vr_002_violated
+  - rule_vr_006_violated
+  - rule_vr_007_violated
+  - rule_vr_010_violated
+  - rule_vr_012_violated
+  - rule_vr_013_violated
+  - rule_vr_014_violated
+  - days_since_last_update
+  - source_system
+  - source_system_changed_flag
+  - n_source_switches_life
+  - document_status_severity
+  - document_status_missing_flag
+  - has_servicer_record
+  - servicer_bal_gap_pct
+  - servicer_rate_gap_bps
+  - servicer_status_matches
+  - days_since_servicer_update
+  - servicer_stale_flag
+  - n_servicer_updates_to_date
+  - n_conflicts_life
+  - servicer_conflict_balance_mismatch
+  - servicer_conflict_status_conflict
+  - servicer_conflict_stale_record
+  - servicer_conflict_rate_discrepancy
+  - calendar_month_sin
+  - calendar_month_cos
+  - quarter
+  - is_year_end
+  - months_observed
+  - is_first_observation
+  - credit_x_ltv
+  - dpd_x_credit
+  - dpd_x_ltv
+  - refi_incentive_x_seasoning
+  - amort_residual_x_modification
+  - dq_score_x_status_severity
+  - servicer_gap_x_dpd
+  - balance_ratio_x_seasoning
+  - burnout_x_incentive
+  - dpd_max_12m_x_cure_count
+  - doc_severity_x_source_manual
+  - age_x_credit
+  next_12m_prepayment:
+  - original_balance
+  - log_original_balance
+  - interest_rate
+  - loan_term_months
+  - credit_score_band_ord
+  - ltv_band_ord
+  - dti_band_ord
+  - credit_score_band
+  - state
+  - loan_purpose
+  - occupancy_type
+  - property_type
+  - servicer_name
+  - vintage_year_num
+  - origination_month_num
+  - orig_rate_vs_vintage_median
+  - current_balance
+  - bal_ratio
+  - scheduled_balance
+  - amort_residual
+  - amort_residual_pct
+  - bal_diff_1
+  - bal_diff_3
+  - bal_diff_6
+  - bal_diff_12
+  - pay_rate
+  - smm
+  - cpr
+  - bal_volatility_6m
+  - bal_trend_6m
+  - months_since_balance_change
+  - balance_zero_flag
+  - balance_exceeds_original_flag
+  - modification_flag
+  - months_since_modification
+  - bal_z_self_12m
+  - dpd
+  - dpd_was_imputed
+  - current_status
+  - status_severity
+  - dpd_lag_1
+  - dpd_lag_2
+  - dpd_lag_3
+  - dpd_lag_6
+  - dpd_lag_12
+  - dpd_delta_1
+  - dpd_delta_3
+  - dpd_max_3m
+  - dpd_max_6m
+  - dpd_max_12m
+  - dpd_max_life
+  - dpd_mean_3m
+  - dpd_mean_6m
+  - n_delinquent_months_6m
+  - n_delinquent_months_12m
+  - n_delinquent_months_life
+  - months_since_first_delinquency
+  - months_since_last_current
+  - worst_status_life
+  - n_status_changes_12m
+  - roll_rate_own_12m
+  - consecutive_current_streak
+  - ever_60plus
+  - ever_90plus
+  - cure_count
+  - delinquency_entropy_12m
+  - is_terminal
+  - default_flag
+  - refi_incentive
+  - refi_incentive_x_ltv
+  - burnout
+  - burnout_months
+  - seasoning_frac
+  - age_bucket
+  - loan_size_decile
+  - is_refi_purpose
+  - months_to_maturity
+  - rate_percentile_in_vintage
+  - sato
+  - loan_age_months
+  - prepayment_flag
+  - peer_vintage_credit_dpd_mean
+  - peer_vintage_credit_delinq_rate
+  - peer_state_delinq_rate
+  - peer_servicer_delinq_rate
+  - peer_servicer_prepay_rate
+  - servicer_dq_rate_to_date
+  - dpd_z_vs_peer
+  - bal_ratio_z_vs_peer
+  - portfolio_delinq_rate_to_date
+  - portfolio_prepay_rate_to_date
+  - dq_score
+  - dq_completeness
+  - dq_validity
+  - dq_consistency
+  - dq_timeliness
+  - dq_uniqueness
+  - dq_cross_source
+  - n_rules_violated
+  - rule_vr_001_violated
+  - rule_vr_002_violated
+  - rule_vr_006_violated
+  - rule_vr_007_violated
+  - rule_vr_010_violated
+  - rule_vr_012_violated
+  - rule_vr_013_violated
+  - rule_vr_014_violated
+  - days_since_last_update
+  - source_system
+  - source_system_changed_flag
+  - n_source_switches_life
+  - document_status_severity
+  - document_status_missing_flag
+  - has_servicer_record
+  - servicer_bal_gap_pct
+  - servicer_rate_gap_bps
+  - servicer_status_matches
+  - days_since_servicer_update
+  - servicer_stale_flag
+  - n_servicer_updates_to_date
+  - n_conflicts_life
+  - servicer_conflict_balance_mismatch
+  - servicer_conflict_status_conflict
+  - servicer_conflict_stale_record
+  - servicer_conflict_rate_discrepancy
+  - calendar_month_sin
+  - calendar_month_cos
+  - quarter
+  - is_year_end
+  - months_observed
+  - is_first_observation
+  - credit_x_ltv
+  - dpd_x_credit
+  - dpd_x_ltv
+  - refi_incentive_x_seasoning
+  - amort_residual_x_modification
+  - dq_score_x_status_severity
+  - servicer_gap_x_dpd
+  - balance_ratio_x_seasoning
+  - burnout_x_incentive
+  - dpd_max_12m_x_cure_count
+  - doc_severity_x_source_manual
+  - age_x_credit
+  next_state:
+  - original_balance
+  - log_original_balance
+  - interest_rate
+  - loan_term_months
+  - credit_score_band_ord
+  - ltv_band_ord
+  - dti_band_ord
+  - credit_score_band
+  - state
+  - loan_purpose
+  - occupancy_type
+  - property_type
+  - servicer_name
+  - vintage_year_num
+  - origination_month_num
+  - orig_rate_vs_vintage_median
+  - current_balance
+  - bal_ratio
+  - scheduled_balance
+  - amort_residual
+  - amort_residual_pct
+  - bal_diff_1
+  - bal_diff_3
+  - bal_diff_6
+  - bal_diff_12
+  - pay_rate
+  - smm
+  - cpr
+  - bal_volatility_6m
+  - bal_trend_6m
+  - months_since_balance_change
+  - balance_zero_flag
+  - balance_exceeds_original_flag
+  - modification_flag
+  - months_since_modification
+  - bal_z_self_12m
+  - dpd
+  - dpd_was_imputed
+  - current_status
+  - status_severity
+  - dpd_lag_1
+  - dpd_lag_2
+  - dpd_lag_3
+  - dpd_lag_6
+  - dpd_lag_12
+  - dpd_delta_1
+  - dpd_delta_3
+  - dpd_max_3m
+  - dpd_max_6m
+  - dpd_max_12m
+  - dpd_max_life
+  - dpd_mean_3m
+  - dpd_mean_6m
+  - n_delinquent_months_6m
+  - n_delinquent_months_12m
+  - n_delinquent_months_life
+  - months_since_first_delinquency
+  - months_since_last_current
+  - worst_status_life
+  - n_status_changes_12m
+  - roll_rate_own_12m
+  - consecutive_current_streak
+  - ever_60plus
+  - ever_90plus
+  - cure_count
+  - delinquency_entropy_12m
+  - is_terminal
+  - default_flag
+  - refi_incentive
+  - refi_incentive_x_ltv
+  - burnout
+  - burnout_months
+  - seasoning_frac
+  - age_bucket
+  - loan_size_decile
+  - is_refi_purpose
+  - months_to_maturity
+  - rate_percentile_in_vintage
+  - sato
+  - loan_age_months
+  - prepayment_flag
+  - peer_vintage_credit_dpd_mean
+  - peer_vintage_credit_delinq_rate
+  - peer_state_delinq_rate
+  - peer_servicer_delinq_rate
+  - peer_servicer_prepay_rate
+  - servicer_dq_rate_to_date
+  - dpd_z_vs_peer
+  - bal_ratio_z_vs_peer
+  - portfolio_delinq_rate_to_date
+  - portfolio_prepay_rate_to_date
+  - dq_score
+  - dq_completeness
+  - dq_validity
+  - dq_consistency
+  - dq_timeliness
+  - dq_uniqueness
+  - dq_cross_source
+  - n_rules_violated
+  - rule_vr_001_violated
+  - rule_vr_002_violated
+  - rule_vr_006_violated
+  - rule_vr_007_violated
+  - rule_vr_010_violated
+  - rule_vr_012_violated
+  - rule_vr_013_violated
+  - rule_vr_014_violated
+  - days_since_last_update
+  - source_system
+  - source_system_changed_flag
+  - n_source_switches_life
+  - document_status_severity
+  - document_status_missing_flag
+  - has_servicer_record
+  - servicer_bal_gap_pct
+  - servicer_rate_gap_bps
+  - servicer_status_matches
+  - days_since_servicer_update
+  - servicer_stale_flag
+  - n_servicer_updates_to_date
+  - n_conflicts_life
+  - servicer_conflict_balance_mismatch
+  - servicer_conflict_status_conflict
+  - servicer_conflict_stale_record
+  - servicer_conflict_rate_discrepancy
+  - month_index
+  - calendar_month_sin
+  - calendar_month_cos
+  - quarter
+  - is_year_end
+  - months_since_panel_start
+  - months_observed
+  - is_first_observation
+  - credit_x_ltv
+  - dpd_x_credit
+  - dpd_x_ltv
+  - refi_incentive_x_seasoning
+  - amort_residual_x_modification
+  - dq_score_x_status_severity
+  - servicer_gap_x_dpd
+  - balance_ratio_x_seasoning
+  - burnout_x_incentive
+  - dpd_max_12m_x_cure_count
+  - doc_severity_x_source_manual
+  - age_x_credit
+  exception_required:
+  - original_balance
+  - log_original_balance
+  - interest_rate
+  - loan_term_months
+  - credit_score_band_ord
+  - ltv_band_ord
+  - dti_band_ord
+  - credit_score_band
+  - state
+  - loan_purpose
+  - occupancy_type
+  - property_type
+  - servicer_name
+  - vintage_year_num
+  - origination_month_num
+  - orig_rate_vs_vintage_median
+  - current_balance
+  - bal_ratio
+  - scheduled_balance
+  - amort_residual
+  - amort_residual_pct
+  - bal_diff_1
+  - bal_diff_3
+  - bal_diff_6
+  - bal_diff_12
+  - pay_rate
+  - smm
+  - cpr
+  - bal_volatility_6m
+  - bal_trend_6m
+  - months_since_balance_change
+  - balance_zero_flag
+  - balance_exceeds_original_flag
+  - modification_flag
+  - months_since_modification
+  - bal_z_self_12m
+  - dpd
+  - dpd_was_imputed
+  - current_status
+  - status_severity
+  - dpd_lag_1
+  - dpd_lag_2
+  - dpd_lag_3
+  - dpd_lag_6
+  - dpd_lag_12
+  - dpd_delta_1
+  - dpd_delta_3
+  - dpd_max_3m
+  - dpd_max_6m
+  - dpd_max_12m
+  - dpd_max_life
+  - dpd_mean_3m
+  - dpd_mean_6m
+  - n_delinquent_months_6m
+  - n_delinquent_months_12m
+  - n_delinquent_months_life
+  - months_since_first_delinquency
+  - months_since_last_current
+  - worst_status_life
+  - n_status_changes_12m
+  - roll_rate_own_12m
+  - consecutive_current_streak
+  - ever_60plus
+  - ever_90plus
+  - cure_count
+  - delinquency_entropy_12m
+  - is_terminal
+  - default_flag
+  - refi_incentive
+  - refi_incentive_x_ltv
+  - burnout
+  - burnout_months
+  - seasoning_frac
+  - age_bucket
+  - loan_size_decile
+  - is_refi_purpose
+  - months_to_maturity
+  - rate_percentile_in_vintage
+  - sato
+  - loan_age_months
+  - prepayment_flag
+  - peer_vintage_credit_dpd_mean
+  - peer_vintage_credit_delinq_rate
+  - peer_state_delinq_rate
+  - peer_servicer_delinq_rate
+  - peer_servicer_prepay_rate
+  - servicer_dq_rate_to_date
+  - dpd_z_vs_peer
+  - bal_ratio_z_vs_peer
+  - portfolio_delinq_rate_to_date
+  - portfolio_prepay_rate_to_date
+  - dq_score
+  - dq_completeness
+  - dq_validity
+  - dq_consistency
+  - dq_timeliness
+  - dq_uniqueness
+  - dq_cross_source
+  - n_rules_violated
+  - rule_vr_001_violated
+  - rule_vr_002_violated
+  - rule_vr_006_violated
+  - rule_vr_007_violated
+  - rule_vr_010_violated
+  - rule_vr_012_violated
+  - rule_vr_013_violated
+  - rule_vr_014_violated
+  - days_since_last_update
+  - source_system
+  - source_system_changed_flag
+  - n_source_switches_life
+  - document_status_severity
+  - document_status_missing_flag
+  - has_servicer_record
+  - servicer_bal_gap_pct
+  - servicer_rate_gap_bps
+  - servicer_status_matches
+  - days_since_servicer_update
+  - servicer_stale_flag
+  - n_servicer_updates_to_date
+  - n_conflicts_life
+  - servicer_conflict_balance_mismatch
+  - servicer_conflict_status_conflict
+  - servicer_conflict_stale_record
+  - servicer_conflict_rate_discrepancy
+  - month_index
+  - calendar_month_sin
+  - calendar_month_cos
+  - quarter
+  - is_year_end
+  - months_since_panel_start
+  - months_observed
+  - is_first_observation
+  - credit_x_ltv
+  - dpd_x_credit
+  - dpd_x_ltv
+  - refi_incentive_x_seasoning
+  - amort_residual_x_modification
+  - dq_score_x_status_severity
+  - servicer_gap_x_dpd
+  - balance_ratio_x_seasoning
+  - burnout_x_incentive
+  - dpd_max_12m_x_cure_count
+  - doc_severity_x_source_manual
+  - age_x_credit
+  hazard:
+  - original_balance
+  - log_original_balance
+  - interest_rate
+  - loan_term_months
+  - credit_score_band_ord
+  - ltv_band_ord
+  - dti_band_ord
+  - credit_score_band
+  - state
+  - loan_purpose
+  - occupancy_type
+  - property_type
+  - servicer_name
+  - vintage_year_num
+  - origination_month_num
+  - orig_rate_vs_vintage_median
+  - current_balance
+  - bal_ratio
+  - scheduled_balance
+  - amort_residual
+  - amort_residual_pct
+  - bal_diff_1
+  - bal_diff_3
+  - bal_diff_6
+  - bal_diff_12
+  - pay_rate
+  - smm
+  - cpr
+  - bal_volatility_6m
+  - bal_trend_6m
+  - months_since_balance_change
+  - balance_zero_flag
+  - balance_exceeds_original_flag
+  - modification_flag
+  - months_since_modification
+  - bal_z_self_12m
+  - dpd
+  - dpd_was_imputed
+  - current_status
+  - status_severity
+  - dpd_lag_1
+  - dpd_lag_2
+  - dpd_lag_3
+  - dpd_lag_6
+  - dpd_lag_12
+  - dpd_delta_1
+  - dpd_delta_3
+  - dpd_max_3m
+  - dpd_max_6m
+  - dpd_max_12m
+  - dpd_max_life
+  - dpd_mean_3m
+  - dpd_mean_6m
+  - n_delinquent_months_6m
+  - n_delinquent_months_12m
+  - n_delinquent_months_life
+  - months_since_first_delinquency
+  - months_since_last_current
+  - worst_status_life
+  - n_status_changes_12m
+  - roll_rate_own_12m
+  - consecutive_current_streak
+  - ever_60plus
+  - ever_90plus
+  - cure_count
+  - delinquency_entropy_12m
+  - is_terminal
+  - default_flag
+  - refi_incentive
+  - refi_incentive_x_ltv
+  - burnout
+  - burnout_months
+  - seasoning_frac
+  - age_bucket
+  - loan_size_decile
+  - is_refi_purpose
+  - months_to_maturity
+  - rate_percentile_in_vintage
+  - sato
+  - loan_age_months
+  - prepayment_flag
+  - peer_vintage_credit_dpd_mean
+  - peer_vintage_credit_delinq_rate
+  - peer_state_delinq_rate
+  - peer_servicer_delinq_rate
+  - peer_servicer_prepay_rate
+  - servicer_dq_rate_to_date
+  - dpd_z_vs_peer
+  - bal_ratio_z_vs_peer
+  - portfolio_delinq_rate_to_date
+  - portfolio_prepay_rate_to_date
+  - dq_score
+  - dq_completeness
+  - dq_validity
+  - dq_consistency
+  - dq_timeliness
+  - dq_uniqueness
+  - dq_cross_source
+  - n_rules_violated
+  - rule_vr_001_violated
+  - rule_vr_002_violated
+  - rule_vr_006_violated
+  - rule_vr_007_violated
+  - rule_vr_010_violated
+  - rule_vr_012_violated
+  - rule_vr_013_violated
+  - rule_vr_014_violated
+  - days_since_last_update
+  - source_system
+  - source_system_changed_flag
+  - n_source_switches_life
+  - document_status_severity
+  - document_status_missing_flag
+  - has_servicer_record
+  - servicer_bal_gap_pct
+  - servicer_rate_gap_bps
+  - servicer_status_matches
+  - days_since_servicer_update
+  - servicer_stale_flag
+  - n_servicer_updates_to_date
+  - n_conflicts_life
+  - servicer_conflict_balance_mismatch
+  - servicer_conflict_status_conflict
+  - servicer_conflict_stale_record
+  - servicer_conflict_rate_discrepancy
+  - month_index
+  - calendar_month_sin
+  - calendar_month_cos
+  - quarter
+  - is_year_end
+  - months_since_panel_start
+  - months_observed
+  - is_first_observation
+  - credit_x_ltv
+  - dpd_x_credit
+  - dpd_x_ltv
+  - refi_incentive_x_seasoning
+  - amort_residual_x_modification
+  - dq_score_x_status_severity
+  - servicer_gap_x_dpd
+  - balance_ratio_x_seasoning
+  - burnout_x_incentive
+  - dpd_max_12m_x_cure_count
+  - doc_severity_x_source_manual
+  - age_x_credit
+  anomaly:
+  - original_balance
+  - log_original_balance
+  - interest_rate
+  - loan_term_months
+  - credit_score_band_ord
+  - ltv_band_ord
+  - dti_band_ord
+  - credit_score_band
+  - state
+  - loan_purpose
+  - occupancy_type
+  - property_type
+  - servicer_name
+  - vintage_year_num
+  - origination_month_num
+  - orig_rate_vs_vintage_median
+  - current_balance
+  - bal_ratio
+  - scheduled_balance
+  - amort_residual
+  - amort_residual_pct
+  - bal_diff_1
+  - bal_diff_3
+  - bal_diff_6
+  - bal_diff_12
+  - pay_rate
+  - smm
+  - cpr
+  - bal_volatility_6m
+  - bal_trend_6m
+  - months_since_balance_change
+  - balance_zero_flag
+  - balance_exceeds_original_flag
+  - modification_flag
+  - months_since_modification
+  - bal_z_self_12m
+  - dpd
+  - dpd_was_imputed
+  - current_status
+  - status_severity
+  - dpd_lag_1
+  - dpd_lag_2
+  - dpd_lag_3
+  - dpd_lag_6
+  - dpd_lag_12
+  - dpd_delta_1
+  - dpd_delta_3
+  - dpd_max_3m
+  - dpd_max_6m
+  - dpd_max_12m
+  - dpd_max_life
+  - dpd_mean_3m
+  - dpd_mean_6m
+  - n_delinquent_months_6m
+  - n_delinquent_months_12m
+  - n_delinquent_months_life
+  - months_since_first_delinquency
+  - months_since_last_current
+  - worst_status_life
+  - n_status_changes_12m
+  - roll_rate_own_12m
+  - consecutive_current_streak
+  - ever_60plus
+  - ever_90plus
+  - cure_count
+  - delinquency_entropy_12m
+  - is_terminal
+  - default_flag
+  - refi_incentive
+  - refi_incentive_x_ltv
+  - burnout
+  - burnout_months
+  - seasoning_frac
+  - age_bucket
+  - loan_size_decile
+  - is_refi_purpose
+  - months_to_maturity
+  - rate_percentile_in_vintage
+  - sato
+  - loan_age_months
+  - prepayment_flag
+  - peer_vintage_credit_dpd_mean
+  - peer_vintage_credit_delinq_rate
+  - peer_state_delinq_rate
+  - peer_servicer_delinq_rate
+  - peer_servicer_prepay_rate
+  - servicer_dq_rate_to_date
+  - dpd_z_vs_peer
+  - bal_ratio_z_vs_peer
+  - portfolio_delinq_rate_to_date
+  - portfolio_prepay_rate_to_date
+  - dq_score
+  - dq_completeness
+  - dq_validity
+  - dq_consistency
+  - dq_timeliness
+  - dq_uniqueness
+  - dq_cross_source
+  - n_rules_violated
+  - rule_vr_001_violated
+  - rule_vr_002_violated
+  - rule_vr_006_violated
+  - rule_vr_007_violated
+  - rule_vr_010_violated
+  - rule_vr_012_violated
+  - rule_vr_013_violated
+  - rule_vr_014_violated
+  - days_since_last_update
+  - source_system
+  - source_system_changed_flag
+  - n_source_switches_life
+  - document_status_severity
+  - document_status_missing_flag
+  - has_servicer_record
+  - servicer_bal_gap_pct
+  - servicer_rate_gap_bps
+  - servicer_status_matches
+  - days_since_servicer_update
+  - servicer_stale_flag
+  - n_servicer_updates_to_date
+  - n_conflicts_life
+  - servicer_conflict_balance_mismatch
+  - servicer_conflict_status_conflict
+  - servicer_conflict_stale_record
+  - servicer_conflict_rate_discrepancy
+  - month_index
+  - calendar_month_sin
+  - calendar_month_cos
+  - quarter
+  - is_year_end
+  - months_since_panel_start
+  - months_observed
+  - is_first_observation
+  - credit_x_ltv
+  - dpd_x_credit
+  - dpd_x_ltv
+  - refi_incentive_x_seasoning
+  - amort_residual_x_modification
+  - dq_score_x_status_severity
+  - servicer_gap_x_dpd
+  - balance_ratio_x_seasoning
+  - burnout_x_incentive
+  - dpd_max_12m_x_cure_count
+  - doc_severity_x_source_manual
+  - age_x_credit
+categorical_features:
+- credit_score_band
+- state
+- loan_purpose
+- occupancy_type
+- property_type
+- servicer_name
+- current_status
+- source_system
+declarations:
+- name: original_balance
+  family: static
+  dtype: float64
+  source_columns:
+  - original_balance
+  description: Original unpaid principal balance (USD)
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: log_original_balance
+  family: static
+  dtype: float64
+  source_columns:
+  - original_balance
+  description: "log1p of original balance \u2014 tames the right tail"
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: interest_rate
+  family: static
+  dtype: float64
+  source_columns:
+  - interest_rate
+  description: Annual note rate (%)
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: loan_term_months
+  family: static
+  dtype: float64
+  source_columns:
+  - loan_term_months
+  description: Full contractual term in months
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: credit_score_band_ord
+  family: static
+  dtype: float64
+  source_columns:
+  - credit_score_band
+  description: Credit band as an ordinal 0..5 (order is real)
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: true
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: ltv_band_ord
+  family: static
+  dtype: float64
+  source_columns:
+  - ltv_band
+  description: LTV band as an ordinal 0..6
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: true
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dti_band_ord
+  family: static
+  dtype: float64
+  source_columns:
+  - dti_band
+  description: DTI band as an ordinal 0..4
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: true
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: credit_score_band
+  family: static
+  dtype: category
+  source_columns:
+  - credit_score_band
+  description: Credit band (native categorical)
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: true
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: state
+  family: static
+  dtype: category
+  source_columns:
+  - state
+  description: Property state (native categorical)
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: true
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: loan_purpose
+  family: static
+  dtype: category
+  source_columns:
+  - loan_purpose
+  description: Loan purpose
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: true
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: occupancy_type
+  family: static
+  dtype: category
+  source_columns:
+  - occupancy_type
+  description: Occupancy type
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: true
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: property_type
+  family: static
+  dtype: category
+  source_columns:
+  - property_type
+  description: Property type
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: true
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: servicer_name
+  family: static
+  dtype: category
+  source_columns:
+  - servicer_name
+  description: Servicer (native categorical)
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: true
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: vintage_year_num
+  family: static
+  dtype: float64
+  source_columns:
+  - vintage_year
+  - origination_month
+  description: Origination year as an integer
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: origination_month_num
+  family: static
+  dtype: float64
+  source_columns:
+  - origination_month
+  description: Origination calendar month 1-12 (seasonality of underwriting)
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: orig_rate_vs_vintage_median
+  family: static
+  dtype: float64
+  source_columns:
+  - interest_rate
+  - vintage_year
+  description: "Note rate minus the median rate of the same vintage year \u2014 spread at origination"
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: current_balance
+  family: balance
+  dtype: float64
+  source_columns:
+  - current_balance
+  description: Current unpaid principal balance
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: bal_ratio
+  family: balance
+  dtype: float64
+  source_columns:
+  - current_balance
+  - original_balance
+  description: current_balance / original_balance
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: scheduled_balance
+  family: balance
+  dtype: float64
+  source_columns:
+  - original_balance
+  - interest_rate
+  - loan_term_months
+  - loan_age_months
+  description: Contractual balance from the standard annuity formula given rate, term and age
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: amort_residual
+  family: balance
+  dtype: float64
+  source_columns:
+  - current_balance
+  - original_balance
+  - interest_rate
+  - loan_term_months
+  - loan_age_months
+  description: 'current_balance - scheduled_balance: negative = curtailment, positive = neg-am or data
+    error'
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: amort_residual_pct
+  family: balance
+  dtype: float64
+  source_columns:
+  - current_balance
+  - original_balance
+  - interest_rate
+  - loan_term_months
+  - loan_age_months
+  description: amort_residual as a share of the scheduled balance
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: bal_diff_1
+  family: balance
+  dtype: float64
+  source_columns:
+  - current_balance
+  description: Balance change vs 1 month ago
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: bal_diff_3
+  family: balance
+  dtype: float64
+  source_columns:
+  - current_balance
+  description: Balance change vs 3 months ago
+  temporal_offset: -3
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: bal_diff_6
+  family: balance
+  dtype: float64
+  source_columns:
+  - current_balance
+  description: Balance change vs 6 months ago
+  temporal_offset: -6
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: bal_diff_12
+  family: balance
+  dtype: float64
+  source_columns:
+  - current_balance
+  description: Balance change vs 12 months ago
+  temporal_offset: -12
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: pay_rate
+  family: balance
+  dtype: float64
+  source_columns:
+  - current_balance
+  - original_balance
+  description: Monthly principal reduction as a share of original balance
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: true
+  drift_psi: null
+  drift_verdict: null
+- name: smm
+  family: balance
+  dtype: float64
+  source_columns:
+  - current_balance
+  description: Single Monthly Mortality = -dBalance / previous balance
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: true
+  drift_psi: null
+  drift_verdict: null
+- name: cpr
+  family: balance
+  dtype: float64
+  source_columns:
+  - current_balance
+  description: Conditional Prepayment Rate = 1 - (1 - SMM)^12, the industry speed measure
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: true
+  drift_psi: null
+  drift_verdict: null
+- name: bal_volatility_6m
+  family: balance
+  dtype: float64
+  source_columns:
+  - current_balance
+  description: Std of the last 6 monthly balance changes
+  temporal_offset: -6
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: bal_trend_6m
+  family: balance
+  dtype: float64
+  source_columns:
+  - current_balance
+  description: Mean of the last 6 monthly balance changes
+  temporal_offset: -6
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: months_since_balance_change
+  family: balance
+  dtype: float64
+  source_columns:
+  - current_balance
+  description: Months since the balance last moved (a frozen feed signal)
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: balance_zero_flag
+  family: balance
+  dtype: float64
+  source_columns:
+  - current_balance
+  description: Balance is exactly zero
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: balance_exceeds_original_flag
+  family: balance
+  dtype: float64
+  source_columns:
+  - current_balance
+  - original_balance
+  description: "current_balance > 1.05 x original_balance \u2014 VR-001's condition as a model input"
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: modification_flag
+  family: balance
+  dtype: float64
+  source_columns:
+  - modification_flag
+  description: Loan has been modified
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: months_since_modification
+  family: balance
+  dtype: float64
+  source_columns:
+  - modification_flag
+  description: Months since the modification flag first appeared
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: bal_z_self_12m
+  family: balance
+  dtype: float64
+  source_columns:
+  - current_balance
+  description: Robust z-score of the balance against this loan's own trailing 12-month median/MAD
+  temporal_offset: -12
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - current_status
+  description: Days past due, imputed from current_status where null via the measured mapping
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd_was_imputed
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - days_past_due
+  description: days_past_due was null and recovered from current_status
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: current_status
+  family: delinquency
+  dtype: category
+  source_columns:
+  - current_status
+  description: Loan status at month end (native categorical)
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: true
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: status_severity
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - current_status
+  description: Ordinal severity of current_status (Current 0 .. Default 4)
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: true
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd_lag_1
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - current_status
+  description: days_past_due 1 month(s) ago
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd_lag_2
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - current_status
+  description: days_past_due 2 month(s) ago
+  temporal_offset: -2
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd_lag_3
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - current_status
+  description: days_past_due 3 month(s) ago
+  temporal_offset: -3
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd_lag_6
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - current_status
+  description: days_past_due 6 month(s) ago
+  temporal_offset: -6
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd_lag_12
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - current_status
+  description: days_past_due 12 month(s) ago
+  temporal_offset: -12
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd_delta_1
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - current_status
+  description: Change in DPD vs last month
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd_delta_3
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - current_status
+  description: Change in DPD vs 3 months ago
+  temporal_offset: -3
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd_max_3m
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - current_status
+  description: Worst DPD over the trailing 3 months
+  temporal_offset: -3
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd_max_6m
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - current_status
+  description: Worst DPD over the trailing 6 months
+  temporal_offset: -6
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd_max_12m
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - current_status
+  description: Worst DPD over the trailing 12 months
+  temporal_offset: -12
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd_max_life
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - current_status
+  description: Worst DPD observed to date (expanding, shifted)
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd_mean_3m
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - current_status
+  description: Mean DPD over the trailing 3 months
+  temporal_offset: -3
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd_mean_6m
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - current_status
+  description: Mean DPD over the trailing 6 months
+  temporal_offset: -6
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: n_delinquent_months_6m
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - current_status
+  description: Delinquent months in the trailing 6
+  temporal_offset: -6
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: n_delinquent_months_12m
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - current_status
+  description: Delinquent months in the trailing 12
+  temporal_offset: -12
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: n_delinquent_months_life
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - current_status
+  description: Delinquent months to date
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: months_since_first_delinquency
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - current_status
+  description: Months since this loan first went delinquent
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: months_since_last_current
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - current_status
+  description: "Cure recency \u2014 months since the loan was last Current"
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: worst_status_life
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - current_status
+  description: Worst status severity observed to date
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: true
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: n_status_changes_12m
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - current_status
+  description: "Status transitions in the trailing 12 months \u2014 instability"
+  temporal_offset: -12
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: roll_rate_own_12m
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - current_status
+  description: This loan's own historical P(deteriorate | its bucket) over the trailing 12 months
+  temporal_offset: -12
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: low
+  justification: Computed only from this loan's own months strictly before t via a shifted rolling window;
+    the truncation test in tests/test_leakage.py asserts equality against a recomputation from a truncated
+    panel.
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: consecutive_current_streak
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - current_status
+  description: Consecutive months Current, ending last month
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: ever_60plus
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - current_status
+  description: Has ever been 60DPD or worse before now
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: ever_90plus
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - current_status
+  description: Has ever been 90DPD or worse before now
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: cure_count
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - current_status
+  description: Number of transitions back to Current from delinquency, to date
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: delinquency_entropy_12m
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - current_status
+  description: Shannon entropy of the status distribution over the trailing 12 months
+  temporal_offset: -12
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: is_terminal
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - current_status
+  description: Loan is in an absorbing state (Prepaid or Closed)
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: default_flag
+  family: delinquency
+  dtype: float64
+  source_columns:
+  - default_flag
+  description: Contemporaneous default indicator
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: refi_incentive
+  family: prepay
+  dtype: float64
+  source_columns:
+  - interest_rate
+  description: Note rate minus the portfolio median rate observed at t (point-in-time)
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: low
+  justification: The portfolio median is computed within month t across loans, which is information available
+    at scoring time for the whole book; it uses no future month and no outcome column.
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: refi_incentive_x_ltv
+  family: prepay
+  dtype: float64
+  source_columns:
+  - interest_rate
+  - ltv_band
+  description: Refi incentive interacted with LTV band ordinal
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: burnout
+  family: prepay
+  dtype: float64
+  source_columns:
+  - interest_rate
+  description: 'Cumulative unexercised refinance incentive: sum of max(0, incentive) over months < t'
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: burnout_months
+  family: prepay
+  dtype: float64
+  source_columns:
+  - interest_rate
+  description: Count of prior months with a positive refinance incentive
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: seasoning_frac
+  family: prepay
+  dtype: float64
+  source_columns:
+  - loan_age_months
+  - remaining_term_months
+  description: "age / (age + remaining_term) \u2014 position along the amortisation curve"
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: age_bucket
+  family: prepay
+  dtype: float64
+  source_columns:
+  - loan_age_months
+  description: 'Seasoning ramp bucket: 0-12 / 13-36 / 37-60 / 60+'
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: true
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: loan_size_decile
+  family: prepay
+  dtype: float64
+  source_columns:
+  - original_balance
+  description: "Original balance decile \u2014 large loans refinance faster (closing costs amortise better)"
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: is_refi_purpose
+  family: prepay
+  dtype: float64
+  source_columns:
+  - loan_purpose
+  description: Loan purpose is a refinance
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: months_to_maturity
+  family: prepay
+  dtype: float64
+  source_columns:
+  - remaining_term_months
+  description: Remaining term in months
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: rate_percentile_in_vintage
+  family: prepay
+  dtype: float64
+  source_columns:
+  - interest_rate
+  - vintage_year
+  description: Rate percentile within the loan's origination vintage
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: sato
+  family: prepay
+  dtype: float64
+  source_columns:
+  - interest_rate
+  - vintage_year
+  description: 'Spread at origination: note rate minus the vintage median rate'
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: loan_age_months
+  family: prepay
+  dtype: float64
+  source_columns:
+  - loan_age_months
+  description: Months since origination
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: prepayment_flag
+  family: prepay
+  dtype: float64
+  source_columns:
+  - prepayment_flag
+  description: Contemporaneous prepayment indicator
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: peer_vintage_credit_dpd_mean
+  family: cohort
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - current_status
+  - vintage_year
+  - credit_score_band
+  description: Mean DPD of the (vintage, credit band) cohort over months < t
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: medium
+  justification: Peer aggregates are expanding means over months strictly less than t (monthly aggregate
+    -> expanding().mean() -> shift(1)), so no row can see its own month or any later month. tests/test_leakage.py::test_cohort_features_are_point_in_time
+    asserts this by recomputation from a truncated panel.
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: peer_vintage_credit_delinq_rate
+  family: cohort
+  dtype: float64
+  source_columns:
+  - current_status
+  - vintage_year
+  - credit_score_band
+  description: Delinquency rate of the (vintage, credit band) cohort over months < t
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: medium
+  justification: Peer aggregates are expanding means over months strictly less than t (monthly aggregate
+    -> expanding().mean() -> shift(1)), so no row can see its own month or any later month. tests/test_leakage.py::test_cohort_features_are_point_in_time
+    asserts this by recomputation from a truncated panel.
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: peer_state_delinq_rate
+  family: cohort
+  dtype: float64
+  source_columns:
+  - current_status
+  - state
+  description: Delinquency rate of the loan's state over months < t
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: medium
+  justification: Peer aggregates are expanding means over months strictly less than t (monthly aggregate
+    -> expanding().mean() -> shift(1)), so no row can see its own month or any later month. tests/test_leakage.py::test_cohort_features_are_point_in_time
+    asserts this by recomputation from a truncated panel.
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: peer_servicer_delinq_rate
+  family: cohort
+  dtype: float64
+  source_columns:
+  - current_status
+  - servicer_name
+  description: Delinquency rate of the loan's servicer over months < t
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: medium
+  justification: Peer aggregates are expanding means over months strictly less than t (monthly aggregate
+    -> expanding().mean() -> shift(1)), so no row can see its own month or any later month. tests/test_leakage.py::test_cohort_features_are_point_in_time
+    asserts this by recomputation from a truncated panel.
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: peer_servicer_prepay_rate
+  family: cohort
+  dtype: float64
+  source_columns:
+  - prepayment_flag
+  - servicer_name
+  description: Prepayment rate of the loan's servicer over months < t
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: medium
+  justification: Peer aggregates are expanding means over months strictly less than t (monthly aggregate
+    -> expanding().mean() -> shift(1)), so no row can see its own month or any later month. tests/test_leakage.py::test_cohort_features_are_point_in_time
+    asserts this by recomputation from a truncated panel.
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: servicer_dq_rate_to_date
+  family: cohort
+  dtype: float64
+  source_columns:
+  - servicer_name
+  description: "Share of the servicer's records violating any rule, over months < t \u2014 operational\
+    \ quality"
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: medium
+  justification: Peer aggregates are expanding means over months strictly less than t (monthly aggregate
+    -> expanding().mean() -> shift(1)), so no row can see its own month or any later month. tests/test_leakage.py::test_cohort_features_are_point_in_time
+    asserts this by recomputation from a truncated panel.
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd_z_vs_peer
+  family: cohort
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - current_status
+  - vintage_year
+  - credit_score_band
+  description: This loan's DPD as a z-score against its (vintage, credit band) cohort
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: medium
+  justification: Peer aggregates are expanding means over months strictly less than t (monthly aggregate
+    -> expanding().mean() -> shift(1)), so no row can see its own month or any later month. tests/test_leakage.py::test_cohort_features_are_point_in_time
+    asserts this by recomputation from a truncated panel.
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: bal_ratio_z_vs_peer
+  family: cohort
+  dtype: float64
+  source_columns:
+  - current_balance
+  - original_balance
+  - vintage_year
+  - credit_score_band
+  description: Balance ratio as a z-score against the cohort
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: medium
+  justification: Peer aggregates are expanding means over months strictly less than t (monthly aggregate
+    -> expanding().mean() -> shift(1)), so no row can see its own month or any later month. tests/test_leakage.py::test_cohort_features_are_point_in_time
+    asserts this by recomputation from a truncated panel.
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: portfolio_delinq_rate_to_date
+  family: cohort
+  dtype: float64
+  source_columns:
+  - current_status
+  description: Whole-portfolio delinquency rate over months < t
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: low
+  justification: Peer aggregates are expanding means over months strictly less than t (monthly aggregate
+    -> expanding().mean() -> shift(1)), so no row can see its own month or any later month. tests/test_leakage.py::test_cohort_features_are_point_in_time
+    asserts this by recomputation from a truncated panel.
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: portfolio_prepay_rate_to_date
+  family: cohort
+  dtype: float64
+  source_columns:
+  - prepayment_flag
+  description: Whole-portfolio prepayment rate over months < t
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: low
+  justification: Peer aggregates are expanding means over months strictly less than t (monthly aggregate
+    -> expanding().mean() -> shift(1)), so no row can see its own month or any later month. tests/test_leakage.py::test_cohort_features_are_point_in_time
+    asserts this by recomputation from a truncated panel.
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dq_score
+  family: dq
+  dtype: float64
+  source_columns:
+  - '*rules*'
+  description: Record data-quality score 0-100
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dq_completeness
+  family: dq
+  dtype: float64
+  source_columns:
+  - '*rules*'
+  description: Completeness sub-score
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dq_validity
+  family: dq
+  dtype: float64
+  source_columns:
+  - '*rules*'
+  description: Validity sub-score
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dq_consistency
+  family: dq
+  dtype: float64
+  source_columns:
+  - '*rules*'
+  description: Consistency sub-score
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dq_timeliness
+  family: dq
+  dtype: float64
+  source_columns:
+  - '*rules*'
+  description: Timeliness sub-score
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dq_uniqueness
+  family: dq
+  dtype: float64
+  source_columns:
+  - '*rules*'
+  description: Uniqueness sub-score
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dq_cross_source
+  family: dq
+  dtype: float64
+  source_columns:
+  - '*rules*'
+  description: Cross-source sub-score
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: n_rules_violated
+  family: dq
+  dtype: float64
+  source_columns:
+  - '*rules*'
+  description: Count of validation rules this record violates
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: rule_vr_001_violated
+  family: dq
+  dtype: float64
+  source_columns:
+  - '*rules*'
+  description: VR-001 fired on this record
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: rule_vr_002_violated
+  family: dq
+  dtype: float64
+  source_columns:
+  - '*rules*'
+  description: VR-002 fired on this record
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: rule_vr_006_violated
+  family: dq
+  dtype: float64
+  source_columns:
+  - '*rules*'
+  description: VR-006 fired on this record
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: rule_vr_007_violated
+  family: dq
+  dtype: float64
+  source_columns:
+  - '*rules*'
+  description: VR-007 fired on this record
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: rule_vr_010_violated
+  family: dq
+  dtype: float64
+  source_columns:
+  - '*rules*'
+  description: VR-010 fired on this record
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: rule_vr_012_violated
+  family: dq
+  dtype: float64
+  source_columns:
+  - '*rules*'
+  description: VR-012 fired on this record
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: rule_vr_013_violated
+  family: dq
+  dtype: float64
+  source_columns:
+  - '*rules*'
+  description: VR-013 fired on this record
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: rule_vr_014_violated
+  family: dq
+  dtype: float64
+  source_columns:
+  - '*rules*'
+  description: VR-014 fired on this record
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: days_since_last_update
+  family: dq
+  dtype: float64
+  source_columns:
+  - last_updated_at
+  - month_index
+  description: Staleness of the master record at month end
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: source_system
+  family: dq
+  dtype: category
+  source_columns:
+  - source_system
+  description: Source system of the record (native categorical)
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: true
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: source_system_changed_flag
+  family: dq
+  dtype: float64
+  source_columns:
+  - source_system
+  description: Source system differs from last month
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: n_source_switches_life
+  family: dq
+  dtype: float64
+  source_columns:
+  - source_system
+  description: Number of source-system switches to date
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: document_status_severity
+  family: dq
+  dtype: float64
+  source_columns:
+  - document_status
+  description: Document status as an ordinal severity
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: true
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: document_status_missing_flag
+  family: dq
+  dtype: float64
+  source_columns:
+  - document_status
+  description: document_status itself is null
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: has_servicer_record
+  family: servicer
+  dtype: float64
+  source_columns:
+  - loan_id
+  - update_date
+  description: A servicer update dated on or before this month end exists for this loan
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: servicer_bal_gap_pct
+  family: servicer
+  dtype: float64
+  source_columns:
+  - current_balance
+  - reported_balance
+  description: (master - servicer) balance gap as a share of master balance
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: servicer_rate_gap_bps
+  family: servicer
+  dtype: float64
+  source_columns:
+  - interest_rate
+  - reported_rate
+  description: Master minus servicer rate, in basis points
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: servicer_status_matches
+  family: servicer
+  dtype: float64
+  source_columns:
+  - current_status
+  - reported_status
+  description: Servicer-reported status equals master status
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: days_since_servicer_update
+  family: servicer
+  dtype: float64
+  source_columns:
+  - update_date
+  - month_index
+  description: Age of the most recent visible servicer update
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: servicer_stale_flag
+  family: servicer
+  dtype: float64
+  source_columns:
+  - stale_flag
+  description: The as-of servicer record is flagged stale
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: n_servicer_updates_to_date
+  family: servicer
+  dtype: float64
+  source_columns:
+  - update_date
+  description: Servicer updates observed for this loan up to t
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: n_conflicts_life
+  family: servicer
+  dtype: float64
+  source_columns:
+  - conflict_type
+  description: Servicer updates with a non-'none' conflict_type up to t
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: servicer_conflict_balance_mismatch
+  family: servicer
+  dtype: float64
+  source_columns:
+  - conflict_type
+  description: Most recent visible conflict_type is balance_mismatch
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: servicer_conflict_status_conflict
+  family: servicer
+  dtype: float64
+  source_columns:
+  - conflict_type
+  description: Most recent visible conflict_type is status_conflict
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: servicer_conflict_stale_record
+  family: servicer
+  dtype: float64
+  source_columns:
+  - conflict_type
+  description: Most recent visible conflict_type is stale_record
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: servicer_conflict_rate_discrepancy
+  family: servicer
+  dtype: float64
+  source_columns:
+  - conflict_type
+  description: Most recent visible conflict_type is rate_discrepancy
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: month_index
+  family: temporal
+  dtype: float64
+  source_columns:
+  - month_index
+  description: "Panel month. Hazard/anomaly/exception only \u2014 banned from the direct-horizon heads,\
+    \ whose labels are censored at the panel edge."
+  temporal_offset: 0
+  allowed_heads:
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: medium
+  justification: 'Not leakage in the point-in-time sense (month_index is known at scoring time), but a
+    censoring trap for the direct-horizon heads: their label rate collapses to zero in months 34-36, so
+    the head would learn a spurious ''late month => no event'' rule and mis-score months 37-42. Permitted
+    only where the label is uncensored (1-step hazard, contemporaneous exception, unsupervised anomaly).'
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: calendar_month_sin
+  family: temporal
+  dtype: float64
+  source_columns:
+  - month_index
+  description: "sin(2*pi*month/12) \u2014 cyclic calendar encoding"
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: calendar_month_cos
+  family: temporal
+  dtype: float64
+  source_columns:
+  - month_index
+  description: "cos(2*pi*month/12) \u2014 cyclic calendar encoding"
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: quarter
+  family: temporal
+  dtype: float64
+  source_columns:
+  - month_index
+  description: Calendar quarter 1-4
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: is_year_end
+  family: temporal
+  dtype: float64
+  source_columns:
+  - month_index
+  description: Reporting month is December
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: months_since_panel_start
+  family: temporal
+  dtype: float64
+  source_columns:
+  - month_index
+  description: Months elapsed since the first panel month
+  temporal_offset: 0
+  allowed_heads:
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: medium
+  justification: Monotone in month_index; carries the same censoring trap. Same policy applies.
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: months_observed
+  family: temporal
+  dtype: float64
+  source_columns:
+  - month_index
+  description: Number of months of history observed for this loan up to t
+  temporal_offset: -1
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: is_first_observation
+  family: temporal
+  dtype: float64
+  source_columns:
+  - month_index
+  description: "First observed month for this loan \u2014 the cold-start indicator"
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: credit_x_ltv
+  family: interactions
+  dtype: float64
+  source_columns:
+  - credit_score_band
+  - ltv_band
+  description: Credit band ordinal x LTV band ordinal
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd_x_credit
+  family: interactions
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - credit_score_band
+  description: "Days past due x credit band ordinal \u2014 same DPD, different meaning"
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd_x_ltv
+  family: interactions
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - ltv_band
+  description: "Days past due x LTV band ordinal \u2014 negative equity amplifies default"
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: refi_incentive_x_seasoning
+  family: interactions
+  dtype: float64
+  source_columns:
+  - interest_rate
+  - loan_age_months
+  - remaining_term_months
+  description: Refi incentive x seasoning fraction
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: amort_residual_x_modification
+  family: interactions
+  dtype: float64
+  source_columns:
+  - current_balance
+  - modification_flag
+  description: "Amortisation residual x modification flag \u2014 a modified loan may legitimately neg-am"
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dq_score_x_status_severity
+  family: interactions
+  dtype: float64
+  source_columns:
+  - '*rules*'
+  - current_status
+  description: Data quality x delinquency severity
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: servicer_gap_x_dpd
+  family: interactions
+  dtype: float64
+  source_columns:
+  - reported_balance
+  - days_past_due
+  description: "Servicer balance gap x days past due \u2014 two-source stress"
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: balance_ratio_x_seasoning
+  family: interactions
+  dtype: float64
+  source_columns:
+  - current_balance
+  - loan_age_months
+  description: "Balance ratio x seasoning \u2014 curtailment detector"
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: burnout_x_incentive
+  family: interactions
+  dtype: float64
+  source_columns:
+  - interest_rate
+  description: "Burnout x current incentive \u2014 the S-curve shape term"
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: dpd_max_12m_x_cure_count
+  family: interactions
+  dtype: float64
+  source_columns:
+  - days_past_due
+  - current_status
+  description: "Peak DPD x number of cures \u2014 chronic vs one-off"
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: doc_severity_x_source_manual
+  family: interactions
+  dtype: float64
+  source_columns:
+  - document_status
+  - source_system
+  description: "Document gap x manual data entry \u2014 the mined association rule, as a feature"
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null
+- name: age_x_credit
+  family: interactions
+  dtype: float64
+  source_columns:
+  - loan_age_months
+  - credit_score_band
+  description: Loan age x credit band ordinal
+  temporal_offset: 0
+  allowed_heads:
+  - next_3m_delinquency
+  - next_6m_delinquency
+  - next_12m_default
+  - next_12m_prepayment
+  - next_state
+  - exception_required
+  - hazard
+  - anomaly
+  leakage_risk: none
+  justification: ''
+  categorical: false
+  ordinal: false
+  winsorised: false
+  drift_psi: null
+  drift_verdict: null

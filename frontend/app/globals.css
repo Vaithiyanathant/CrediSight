@@ -1,0 +1,276 @@
+@import "tailwindcss";
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LPIE theme — palette ported from the gov-scrapper theme kit.
+   Same HSL token system, same run-time model (data-theme attribute swap,
+   no build step), remapped onto the variable NAMES every component in this
+   app already reads so the whole product re-themes without touching 9 pages
+   of inline styles.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Dark theme (default) ─────────────────────────────────── */
+:root,
+[data-theme="dark"] {
+  --color-bg-base:        hsl(222 47% 7%);
+  --color-bg-surface:     hsl(222 47% 11%);
+  --color-bg-elevated:    hsl(217 33% 15%);
+  --color-bg-subtle:      hsl(217 33% 17%);
+  --color-bg-sunken:      hsl(222 47% 9%);
+  --color-border:         hsl(217 33% 22%);
+  --color-border-strong:  hsl(217 30% 32%);
+  --color-text-primary:   hsl(214 20% 90%);
+  --color-text-secondary: hsl(215 20% 68%);
+  --color-text-tertiary:  hsl(215 18% 58%);
+  --color-text-inverse:   hsl(222 47% 7%);
+  --color-accent:         hsl(200 85% 52%);
+  --color-accent-hover:   hsl(200 85% 62%);
+  --color-accent-muted:   hsl(202 60% 16%);
+  --color-link:           hsl(200 85% 65%);
+  --color-risk-high:      hsl(354 80% 65%);
+  --color-risk-medium:    hsl(45 90% 57%);
+  --color-risk-low:       hsl(142 65% 52%);
+  --color-risk-neutral:   hsl(200 85% 52%);
+  --color-survival:       hsl(188 76% 52%);
+  --color-scenario-base:        hsl(142 65% 52%);
+  --color-scenario-adverse:     hsl(354 80% 65%);
+  --color-scenario-stagflation: hsl(45 90% 57%);
+  --color-scenario-prepay:      hsl(188 76% 52%);
+  --color-grade-a: hsl(142 60% 55%);
+  --color-grade-b: hsl(142 65% 52%);
+  --color-grade-c: hsl(45 90% 60%);
+  --color-grade-d: hsl(22 95% 65%);
+  --color-grade-f: hsl(354 85% 71%);
+  --color-ai-banner:      hsl(45 90% 57% / .14);
+  --color-ai-banner-text: hsl(45 90% 68%);
+  --color-sheen: hsl(0 0% 100% / .07);
+  --color-scrollbar-thumb: hsl(217 25% 33%);
+  --color-skeleton-base: hsl(217 33% 17%);
+  --color-skeleton-sheen: hsl(217 30% 25%);
+  --shadow-sm: 0 1px 2px hsl(0 0% 0% / .40);
+  --shadow-md: 0 4px 12px hsl(0 0% 0% / .45);
+  --shadow-lg: 0 10px 28px hsl(0 0% 0% / .55);
+  --color-chrome-1: hsl(222 47% 9%);
+  --color-chrome-2: hsl(217 33% 17%);
+  --color-chrome-hover: hsl(217 33% 17%);
+  --color-chrome-text: hsl(215 20% 68%);
+  --color-chrome-title: hsl(214 20% 92%);
+  --color-chrome-border: hsl(217 33% 22%);
+  --color-chrome-1-rgb: 12, 19, 34;
+  --chart-1: hsl(200 85% 58%);
+  --chart-2: hsl(142 63% 52%);
+  --chart-3: hsl(45 90% 58%);
+  --chart-4: hsl(354 82% 66%);
+  --chart-5: hsl(262 85% 70%);
+  --chart-6: hsl(188 76% 52%);
+  --chart-7: hsl(330 78% 68%);
+  --chart-8: hsl(222 70% 68%);
+  --chart-grid: hsl(217 33% 22%);
+  --chart-tooltip-bg: hsl(222 47% 5%);
+  --chart-tooltip-text: hsl(214 20% 92%);
+  --sidebar-width: 240px;
+  --sidebar-collapsed: 64px;
+  --header-height: 56px;
+  color-scheme: dark;
+}
+
+/* ── Light theme ──────────────────────────────────────────── */
+[data-theme="light"] {
+  --color-bg-base:        hsl(210 20% 98%);
+  --color-bg-surface:     hsl(0 0% 100%);
+  --color-bg-elevated:    hsl(210 20% 97%);
+  --color-bg-subtle:      hsl(210 20% 96%);
+  --color-bg-sunken:      hsl(210 20% 94%);
+  --color-border:         hsl(214 20% 90%);
+  --color-border-strong:  hsl(214 20% 82%);
+  --color-text-primary:   hsl(220 13% 20%);
+  --color-text-secondary: hsl(220 9% 42%);
+  --color-text-tertiary:  hsl(215 14% 50%);
+  --color-text-inverse:   hsl(0 0% 100%);
+  --color-accent:         hsl(200 90% 37%);
+  --color-accent-hover:   hsl(200 90% 31%);
+  --color-accent-muted:   hsl(200 85% 96%);
+  --color-link:           hsl(201 89% 36%);
+  --color-risk-high:      hsl(354 70% 44%);
+  --color-risk-medium:    hsl(45 95% 31%);
+  --color-risk-low:       hsl(142 72% 28%);
+  --color-risk-neutral:   hsl(200 85% 47%);
+  --color-survival:       hsl(188 86% 40%);
+  --color-scenario-base:        hsl(142 72% 28%);
+  --color-scenario-adverse:     hsl(354 70% 44%);
+  --color-scenario-stagflation: hsl(45 95% 31%);
+  --color-scenario-prepay:      hsl(188 86% 40%);
+  --color-grade-a: hsl(142 72% 28%);
+  --color-grade-b: hsl(90 45% 34%);
+  --color-grade-c: hsl(45 95% 31%);
+  --color-grade-d: hsl(22 90% 44%);
+  --color-grade-f: hsl(354 70% 44%);
+  --color-ai-banner:      hsl(45 93% 90%);
+  --color-ai-banner-text: hsl(45 95% 25%);
+  --color-sheen: hsl(0 0% 100% / .5);
+  --color-scrollbar-thumb: hsl(214 15% 78%);
+  --color-skeleton-base: hsl(210 20% 94%);
+  --color-skeleton-sheen: hsl(210 20% 98%);
+  --shadow-sm: 0 1px 2px hsl(220 20% 30% / .06);
+  --shadow-md: 0 4px 10px hsl(220 20% 30% / .08);
+  --shadow-lg: 0 10px 24px hsl(220 20% 30% / .10);
+  --color-chrome-1: hsl(0 0% 100%);
+  --color-chrome-2: hsl(210 20% 96%);
+  --color-chrome-hover: hsl(210 20% 96%);
+  --color-chrome-text: hsl(220 9% 42%);
+  --color-chrome-title: hsl(220 13% 20%);
+  --color-chrome-border: hsl(214 20% 90%);
+  --color-chrome-1-rgb: 255, 255, 255;
+  --chart-1: hsl(200 85% 47%);
+  --chart-2: hsl(142 71% 45%);
+  --chart-3: hsl(45 93% 47%);
+  --chart-4: hsl(354 70% 54%);
+  --chart-5: hsl(262 83% 58%);
+  --chart-6: hsl(188 86% 40%);
+  --chart-7: hsl(330 75% 55%);
+  --chart-8: hsl(222 60% 55%);
+  --chart-grid: hsl(214 20% 90%);
+  --chart-tooltip-bg: hsl(222 47% 11%);
+  --chart-tooltip-text: hsl(214 20% 92%);
+  --sidebar-width: 240px;
+  --sidebar-collapsed: 64px;
+  --header-height: 56px;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-background: var(--color-bg-base);
+  --color-foreground: var(--color-text-primary);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ── Motion tokens ────────────────────────────────────────── */
+:root {
+  --transition-base: 0.15s;
+  --transition-slow: 0.3s;
+  --ease-out: cubic-bezier(.4, 0, .2, 1);
+  --ease-emphasis: cubic-bezier(.22, 1, .36, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+}
+
+/* ── Reset / base ─────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;}
+html{height:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;}
+body{min-height:100%;background-color:var(--color-bg-base);color:var(--color-text-primary);font-family:var(--font-geist-sans),system-ui,sans-serif;line-height:1.5;overflow-x:hidden;transition:background-color 200ms ease,color 200ms ease;}
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--color-scrollbar-thumb);border-radius:99px;}
+::-webkit-scrollbar-thumb:hover{background:var(--color-border-strong);}
+:focus-visible{outline:2px solid var(--color-accent);outline-offset:2px;}
+
+/* ── Skeleton — shimmer sweep, chart/kpi/table shapes sized to the real
+   components so nothing jumps when data lands ─────────────────────────── */
+@keyframes skel-sweep{100%{transform:translateX(100%);}}
+.skeleton{position:relative;overflow:hidden;background:var(--color-skeleton-base);border-radius:4px;}
+.skeleton::after{content:"";position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg,transparent,var(--color-skeleton-sheen),transparent);animation:skel-sweep 1.5s ease-in-out infinite;}
+.skel-chart{display:block;width:100%;height:220px;border-radius:8px;}
+.skel-chart-sm{height:180px;}
+@media(max-width:900px){.skel-chart{height:180px;}}
+
+/* ── Entrance choreography — one-shot on first load, never on refresh ──── */
+@keyframes fade-up{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fade-in{from{opacity:0;}to{opacity:1;}}
+@keyframes slide-in-left{from{opacity:0;transform:translateX(-12px);}to{opacity:1;transform:translateX(0);}}
+@keyframes card-in{0%{opacity:0;transform:translateY(16px) scale(.98);}100%{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes value-pop{0%{opacity:0;transform:scale(.5);}60%{transform:scale(1.06);}100%{opacity:1;transform:scale(1);}}
+@keyframes icon-pop{0%{opacity:0;transform:rotate(-60deg) scale(.5);}100%{opacity:1;transform:rotate(0) scale(1);}}
+@keyframes shimmer-sweep{0%{left:-50%;}100%{left:120%;}}
+@keyframes pulse-dot{0%,100%{opacity:1;box-shadow:0 0 0 0 hsl(142 65% 52% / .35);}50%{opacity:.6;box-shadow:0 0 0 5px transparent;}}
+
+.animate-fade-up{animation:fade-up 0.4s var(--ease-out) both;}
+.animate-fade-in{animation:fade-in 0.3s ease both;}
+.animate-slide-in{animation:slide-in-left 0.4s var(--ease-out) both;}
+.delay-1{animation-delay:0.05s;}.delay-2{animation-delay:0.10s;}.delay-3{animation-delay:0.15s;}.delay-4{animation-delay:0.20s;}.delay-5{animation-delay:0.25s;}.delay-6{animation-delay:0.30s;}
+
+/* A "widget" is any card that should drop in + get a single diagonal sheen. */
+.gs-widget{position:relative;overflow:hidden;animation:card-in .5s var(--ease-emphasis) both;transition:box-shadow var(--transition-base),transform var(--transition-base),border-color var(--transition-base);}
+.gs-widget:hover{box-shadow:var(--shadow-md);border-color:var(--color-accent);}
+.gs-widget::after{content:"";position:absolute;top:0;left:-50%;width:50%;height:100%;background:linear-gradient(90deg,transparent,var(--color-sheen),transparent);animation:shimmer-sweep .8s ease-in-out both;animation-delay:.35s;pointer-events:none;}
+
+.gs-live-dot{width:6px;height:6px;border-radius:50%;background:var(--color-risk-low);animation:pulse-dot 1.8s ease-in-out infinite;display:inline-block;}
+
+/* ── KPI tiles — borderless, shadow-only depth, entrance ladder ─────────
+   Matches the reference dashboard's tile anatomy: bare tone-coloured icon,
+   label, big value, status chip. No card border by request — separation
+   comes from shadow + the surface/canvas contrast alone. ──────────────── */
+@keyframes icon-spin{to{transform:rotate(360deg);}}
+
+.gs-kpi{animation:card-in .5s var(--ease-emphasis) both;transition:border-color var(--transition-base),box-shadow var(--transition-base);}
+.gs-kpi:hover{border-color:var(--color-accent);box-shadow:0 0 0 2px hsl(200 85% 52% / .12);}
+.gs-kpi .gs-kpi__icon{animation:icon-pop .5s var(--ease-spring) both;}
+.gs-kpi .gs-kpi__value{animation:value-pop .45s var(--ease-spring) both;}
+
+/* One diagonal sheen sweep per tile, after it has landed. Pure decoration —
+   pointer-events:none so it never eats a click on a clickable tile. */
+.gs-kpi::after{
+  content:"";position:absolute;top:0;left:-50%;width:50%;height:100%;
+  background:linear-gradient(90deg,transparent,var(--color-sheen),transparent);
+  animation:shimmer-sweep .8s ease-in-out both;pointer-events:none;
+}
+
+/* Delay ladder (theme-kit §6.4), compressed for this app's 4-per-row layout:
+   tile +.06s, its icon +.15s after the tile, its value +.20s, sheen +.45s. */
+[data-kpi-row]{display:grid;}
+[data-kpi-row] .gs-kpi:nth-child(1){animation-delay:.05s;}
+[data-kpi-row] .gs-kpi:nth-child(2){animation-delay:.11s;}
+[data-kpi-row] .gs-kpi:nth-child(3){animation-delay:.17s;}
+[data-kpi-row] .gs-kpi:nth-child(4){animation-delay:.23s;}
+[data-kpi-row] .gs-kpi:nth-child(1) .gs-kpi__icon{animation-delay:.20s;}
+[data-kpi-row] .gs-kpi:nth-child(2) .gs-kpi__icon{animation-delay:.26s;}
+[data-kpi-row] .gs-kpi:nth-child(3) .gs-kpi__icon{animation-delay:.32s;}
+[data-kpi-row] .gs-kpi:nth-child(4) .gs-kpi__icon{animation-delay:.38s;}
+[data-kpi-row] .gs-kpi:nth-child(1) .gs-kpi__value{animation-delay:.25s;}
+[data-kpi-row] .gs-kpi:nth-child(2) .gs-kpi__value{animation-delay:.31s;}
+[data-kpi-row] .gs-kpi:nth-child(3) .gs-kpi__value{animation-delay:.37s;}
+[data-kpi-row] .gs-kpi:nth-child(4) .gs-kpi__value{animation-delay:.43s;}
+[data-kpi-row] .gs-kpi:nth-child(1)::after{animation-delay:.50s;}
+[data-kpi-row] .gs-kpi:nth-child(2)::after{animation-delay:.56s;}
+[data-kpi-row] .gs-kpi:nth-child(3)::after{animation-delay:.62s;}
+[data-kpi-row] .gs-kpi:nth-child(4)::after{animation-delay:.68s;}
+
+/* A panel that groups a KPI row, matching the reference's "Monitoring
+   overview" card: sunken ground so the tiles inside read as raised. */
+.gs-panel{
+  background:var(--color-bg-sunken);
+  border:1px solid var(--color-border);
+  border-radius:10px;
+  padding:18px;
+  animation:card-in .5s var(--ease-emphasis) both;
+}
+.gs-panel__head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;}
+.gs-panel__title{font-size:14px;font-weight:600;color:var(--color-text-primary);margin:0;}
+
+/* Deliberate deviation from theme-kit.md's per-class reduced-motion list: a
+   universal `*` guard covers every current AND future animated class (gs-kpi,
+   gs-widget, gs-live-dot, inline icon-spin/icon-pop styles, …) without a
+   maintained allowlist that can silently go stale as new components are
+   added. Colour/theme transitions still run at their real duration since
+   only `animation-duration`/`transition-duration` are clamped, matching the
+   spec's "kill movement, keep colour" rule. */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;}
+}
+
+/* ── Responsive shell ─────────────────────────────────────────────────────
+   Desktop: fixed rail sidebar, no bottom nav.
+   ≤860px: rail collapses to width 0 and hides, bottom tab bar takes over,
+   main content gets bottom padding so it never sits under the fixed bar. ── */
+.mobile-nav-bar{display:none;}
+@media (max-width: 860px) {
+  :root, [data-theme="dark"], [data-theme="light"] { --sidebar-width: 0px; }
+  .desktop-sidebar{display:none !important;}
+  .mobile-nav-bar{display:flex !important;}
+  .dashboard-main{padding-bottom:76px !important;}
+}
+@media (max-width: 640px) {
+  .dashboard-main{padding:20px 16px 76px !important;}
+  .gs-kpi-row, [data-kpi-row]{grid-template-columns:1fr 1fr !important;}
+}
+@media (max-width: 420px) {
+  .gs-kpi-row, [data-kpi-row]{grid-template-columns:1fr !important;}
+}
